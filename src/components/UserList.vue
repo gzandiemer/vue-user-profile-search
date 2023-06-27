@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import UserCard from '../components/UserCard.vue';
 import { User } from '../types';
@@ -43,38 +43,27 @@ export default defineComponent({
         return nameMatch && genderMatch;
       });
     });
+    onMounted(async () => {
+      // Add scroll event listener on component mount
+      window.addEventListener('scroll', handleScroll);
+      // Fetch initial users on component mount
+      await fetchUsers();
+    });
+
+    onUnmounted(() => {
+      // Remove scroll event listener before component unmount
+      window.removeEventListener('scroll', handleScroll);
+    });
+
+    function handleScroll() {
+      // Check if user has scrolled to the bottom of the page
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        // Load more users
+        fetchUsers();
+      }
+    }
 
     return { fetchUsers, users, filteredUsers };
-  },
-  async mounted() {
-    // Add scroll event listener on component mount
-    window.addEventListener('scroll', this.fetchUsers);
-    // Fetch initial users on component mount
-    await this.fetchUsers();
-  },
-  beforeUnmount() {
-    // Remove scroll event listener before component unmount
-    window.removeEventListener('scroll', this.fetchUsers);
-    //},
-    // methods: {
-    //   async fetchUsers() {
-    //     // Fetch users from API and store them in 'users' data property
-    //     const response = await fetch(
-    //       'https://randomuser.me/api/?results=25&page=${this.page}'
-    //     );
-    //     const data = await response.json();
-    //     this.users = [...this.users, ...data.results];
-    //     // This method is called when component is mounted, when "More results..." button is clicked
-    //     //and when user scrolls to the bottom
-    //   },
-    //   loadMore() {
-    //     // Check if user has scrolled to the bottom of the page
-    //     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    //       // Load more users
-    //       this.page += 1;
-    //       this.fetchUsers();
-    //     }
-    //   }
   }
 });
 </script>
