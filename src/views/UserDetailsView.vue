@@ -2,6 +2,7 @@
   <div>
     <img :src="user.picture.large" alt="User picture" />
     <p>{{ user.name.title }}. {{ user.name.first }} {{ user.name.last }}</p>
+    <p>User ID: {{ user.login.uuid }}</p>
     <p>Address:
       {{ user.location.street.name }}, {{ user.location.postcode }} {{ user.location.city }}</p>
     <p>{{ user.location.state }} - {{ user.location.country }} </p>

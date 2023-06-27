@@ -4,6 +4,7 @@
       v-for="user in filteredUsers"
       :key="user.login.uuid"
       :user="user"
+      @user-selected="$emit('userSelected', $event)"
     />
     <button @click="fetchUsers">
       More results...
@@ -12,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted, onUnmounted } from 'vue';
+import { defineComponent, computed, onMounted, onUnmounted} from 'vue';
 import { useStore } from 'vuex';
 import UserCard from '../components/UserCard.vue';
 import { User } from '../types';
@@ -24,7 +25,7 @@ export default defineComponent({
     search: String,
     gender: String
   },
-  setup(props) {
+  setup(props, { emit }) {
     const store = useStore();
 
     const fetchUsers = async () => {
@@ -43,27 +44,42 @@ export default defineComponent({
         return nameMatch && genderMatch;
       });
     });
-    onMounted(async () => {
+
+    //const scrollTarget = ref(null);
+
+    const onScroll = () => {
+      const bottomOfWindow = Math.max(window.pageYOffset,
+      document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight;
+
+      if(bottomOfWindow) {
+        fetchUsers();
+      }
+    }
+    onMounted(() => {
       // Add scroll event listener on component mount
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', onScroll);
       // Fetch initial users on component mount
-      await fetchUsers();
+      fetchUsers();
     });
 
     onUnmounted(() => {
       // Remove scroll event listener before component unmount
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScroll);
     });
 
-    function handleScroll() {
-      // Check if user has scrolled to the bottom of the page
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        // Load more users
-        fetchUsers();
-      }
-    }
+    const userSelected = (user: User) => {
+        emit('user-selected', user);
+    };
 
-    return { fetchUsers, users, filteredUsers };
+    // function handleScroll() {
+    //   // Check if user has scrolled to the bottom of the page
+    //   if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    //     // Load more users
+    //     fetchUsers();
+    //   }
+    // }
+
+    return { fetchUsers, users, filteredUsers, userSelected };
   }
 });
 </script>
