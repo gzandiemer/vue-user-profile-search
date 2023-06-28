@@ -4,7 +4,7 @@
       v-for="user in filteredUsers"
       :key="user.login.uuid"
       :user="user"
-      @user-selected="$emit('userSelected', $event)"
+      @user-selected="$emit('user-selected', $event)"
     />
     <button @click="fetchUsers">
       More results...

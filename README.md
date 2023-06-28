@@ -33,7 +33,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 # style filter button (the arrow and the dropdown)
-# make modal open differently on the mobile!! fix phone display!!
 # add unit tests.
 # fix icon issues!
 # check again if more results button work as intended

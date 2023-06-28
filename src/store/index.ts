@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import { User } from '../types';
 
-interface State {
+export interface State {
   users: User[];
   selectedUser: User | null;
   searchQuery: string;
