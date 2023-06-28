@@ -29,10 +29,17 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### TO DO: 
-# CHANGE THE FETCH API IN A WAY WHERE WE GET ONLY THE NECESSARY INFO NOT THE WHOLE USER INFO
-# FIGURE OUT HOW TO DO THIS PERSISTENT STATE THING
+# use this colors: #F18A19(orange) , #424242(grey), #fffff, #252525 (dark grey)
 
-# STYLE USER CARD AND MODAL
-# CHANGE VIEW NAME
+
+# style filter button (the arrow and the dropdown)
+# make modal open differently on the mobile!! fix phone display!!
+# add unit tests.
+# fix icon issues!
+# check again if more results button work as intended
+# refactor
+# deploy
+
+
 
 

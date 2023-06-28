@@ -24,7 +24,7 @@ import UserList from '../components/UserList.vue';
 import { User } from '../types';
 
 export default defineComponent({
-  name: 'UserListView',
+  name: 'HomeView',
   components: {
     SearchBar, 
     UserDetails,

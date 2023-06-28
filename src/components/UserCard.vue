@@ -45,26 +45,29 @@ export default defineComponent({
 
 <style scoped>
 .user-card {
+  width: 90%;
+  margin: 1rem auto;
   cursor: pointer;
-  background-color: #f0f0f0; /* Change as per your preference */
-  border: 1px solid #d0d0d0; /* Change as per your preference */
-  border-radius: 5px; /* Change as per your preference */
-  padding: 10px; /* Change as per your preference */
-  margin-bottom: 10px; /* Change as per your preference */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Change as per your preference */
-  display: flex; /* Add this line */
-  align-items: center; /* Add this line */
+  background-color: #f0f0f0; /* #f0f0f0 C*/
+  border: 1px solid #d0d0d0; 
+  border-radius: 5px; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
+  display: flex; 
+  align-items: center; 
 }
 
 .user-picture {
-  border-radius: 50%; /* This will make the image round */
-  width: 60px; /* Adjust as per your preference */
-  height: 60px; /* Adjust as per your preference */
-  object-fit: cover; /* Ensures the image maintains aspect ratio */
-  margin-left: 10px;
+  border-radius: 50%; 
+  border: 1px solid #F18A19;
+  width: 60px; 
+  height: 60px; 
+  object-fit: cover; 
+  margin-left: 5%;
 }
 
 .user-info {
-  flex: 1; /* Allows text to take remaining horizontal space */
+  flex: 1; 
 }
 </style>

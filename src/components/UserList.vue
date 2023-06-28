@@ -71,4 +71,32 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+ button {
+    display: block;
+    width: 90%;
+    padding: 1rem;
+    margin: 2rem auto;
+    color: #fff;
+    background-color: #F18A19; /* Adjust color to match your theme */
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #D16A00; /* Slightly darker shade for hover effect */
+  }
+
+  /* Adjust button size for small screens */
+  @media screen and (max-width: 600px) {
+    button {
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+  }
+
+</style>

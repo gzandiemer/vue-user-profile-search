@@ -9,25 +9,48 @@
       <div class="modal-user-info">
         <img class="user-picture" :src="user.picture.large" alt="User picture" />
         <div class="user-name-and-id">
-          <p>{{ formattedName }}</p>
-          <p>User ID: {{ user.login.uuid }}</p>
+          <p class="user-name">{{ formattedName }}</p> 
+          <p>ID: {{ user.login.uuid }}</p>
         </div>
       </div>
-      <div class="user-location">
+      <div class="user-details-container">
+      <div class="user-detail">
+        <font-awesome-icon icon="['far', 'map-market-alt']" class="icon"></font-awesome-icon>
+        <div>
+          <p>{{ user.location.street.name }} {{ user.location.street.number }} {{ user.location.postcode }} {{ user.location.city }}</p>
+          <p>{{ user.location.state }}, {{ user.location.country }}</p>
+        </div>
+      </div>
+      <div class="user-detail">
+        <font-awesome-icon icon="['far', 'envelope']" class="icon"></font-awesome-icon>
+        <p> {{ user.email }}</p>
+      </div>
+      <div class="user-detail">
+        <font-awesome-icon icon="['far', 'phone']" class="icon"></font-awesome-icon>
+        <p> {{ user.phone }}</p>
+      </div>
+    </div>
+  </div>
+      <!-- <div class="user-details-container">
+        <div class="user-detail">
+        <font-awesome-icon icon="['far', 'map-market-alt']" class="icon"></font-awesome-icon>
         <p>Address:
-      {{ user.location.street.name }}, {{ user.location.postcode }} {{ user.location.city }}</p>
-        <p>{{ user.location.state }} - {{ user.location.country }} </p>
+      {{ user.location.street.name }} {{ user.location.street.number }} {{ user.location.postcode }} {{ user.location.city }}</p>
+        <p>{{ user.location.state }}, {{ user.location.country }}</p>
       </div>
       <div class="user-contact">
+        <font-awesome-icon icon="['far', 'envelope']" class="icon"></font-awesome-icon>
         <p>Email: {{ user.email }}</p>
+        <font-awesome-icon icon="['far', 'phone']" class="icon"></font-awesome-icon>
         <p>Phone: {{ user.phone }}</p>
       </div> 
-    </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent} from 'vue';
 import { User } from '../types';
 
 export default defineComponent({
@@ -38,6 +61,23 @@ export default defineComponent({
       default: null
     }
   },
+  // setup() {
+  //   // const store = useStore();
+  //   // const isMobile = ref(window.innerWidth <= 768);
+  //   // window.addEventListener('resize', () => {
+  //   //   isMobile.value = window.innerWidth <= 768;
+  //   // });
+
+  //   // const modalWidth = computed(() => (isMobile.value ? '100%' : '60%'));
+
+  //   // const closeModal = () => {
+  //   //   store.commit('clearSelectedUser');
+  //   // };
+
+  //   return {
+  //     closeModal
+  //   };
+  // },
   computed: {
     formattedName() {
       const first =
@@ -63,8 +103,8 @@ export default defineComponent({
   z-index: 1;
   right: 0;
   top: 0;
-  width: 60%;
-  height: 100%;
+  height: 100vh;
+  width:60%;
   background-color: rgba(0,0,0,0.4);
 }
 
@@ -75,29 +115,32 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   background-color: #fefefe;
-  padding: 20px;
+  padding: 20px 20px;
   border-bottom: 1px solid #888;
   width: 100%;
+  /*border: 1px solid #888;*/
 }
 
 .modal-content {
   position: absolute;
   background-color: #fefefe;
   padding: 20px;
-  border: 1px solid #888;
+  /*border: 1px solid #888; */
   width: 100%;
-  height: calc(100% - 70px);
-  overflow: auto;
-  top: 70px;
+  height: calc(100vh - 70px); 
+  overflow: auto; 
+  top: 70px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center; 
 }
-
-
 
 .close-button {
   position: relative; 
-  right: 10%;
+  right: 8%;
   z-index: 15;
-  color: #aaa;
+  color: #F18A19;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
@@ -112,18 +155,55 @@ export default defineComponent({
 
 .modal-user-info {
   display: flex;
-  margin-top: 10%;
-  margin-left: 20%;
+  align-items: center; 
+  justify-content: center; 
+  margin-bottom: 2rem;
 }
 
 .user-picture {
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  border: 1px solid #F18A19;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
+  margin-right: 2rem;
 }
 
 .user-name-and-id {
-  margin-left: 20px;
+  text-align: center; 
 }
+
+.user-name {
+  font-size: 2em;  
+  font-weight: bold;
+}
+
+.user-details-container {
+  width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #888; 
+  padding: 2rem 20px; 
+}
+.user-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+  }
+
+.user-location, .user-contact {
+  width: 45%; 
+  position: relative; 
+}
+
+.icon {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  font-size: 1.4rem; 
+  color: #F18A19 ;
+  margin-bottom: 1rem;
+}
+
 </style>

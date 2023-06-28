@@ -49,7 +49,7 @@ export default createStore({
   },
   actions: {
       async fetchUsers({ commit, state }) {
-        const response = await fetch(`https://randomuser.me/api/?inc=name,gender,email,login,location,phone,picture&page=${state.page}&results=25`);
+        const response = await fetch(`https://randomuser.me/api/?inc=gender,name,location,email,login,phone,picture&page=${state.page}&results=25`);
         const data = await response.json();
         commit('setUsers', [...state.users, ...data.results]);
         commit('incrementPage');

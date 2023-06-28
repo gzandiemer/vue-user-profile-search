@@ -1,18 +1,13 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import UserListView from '../views/UserListView.vue';
+import HomeView from '../views/HomeView2.vue';
 //import UserDetailsView from '../views/UserDetailsView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'UserList',
-    component: UserListView
+    name: 'HomeView',
+    component: HomeView
   }
-  // {
-  //   path: '/user/:id',
-  //   name: 'UserDetail',
-  //   component: UserDetailsView
-  // }
 ];
 
 const router = createRouter({
