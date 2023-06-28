@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="app-container">
     <div class="user-list" :style="userListStyle">
     <search-bar
@@ -125,4 +125,4 @@ export default defineComponent({
     display: block;
   }
 }
-</style>
+</style> -->

@@ -11,7 +11,9 @@
       :gender="gender"
     />
     </div>
+    <div class="user-details-container">
       <user-details v-if="selectedUser" :user="selectedUser" @close="closeModal"/>
+    </div>
   </div>
 </template>
 
@@ -61,9 +63,11 @@ export default defineComponent({
     };
 
     const userListStyle = computed(() => {
-      return {
-        width: selectedUser.value ? '40%' : '100%',
-      };
+      if (window.innerWidth >= 1280 && selectedUser.value) {
+        return { width: '40%' };
+      } else {
+        return { width: '100%' };
+      }
     });
 
     return {
@@ -85,11 +89,15 @@ export default defineComponent({
   display: flex;
   height: 100vh;
   width: 100%;
-  overflow-x: hidden; 
 }
 
 .user-list { 
   overflow-y: auto; 
   height: 100vh;
 }
+
+ .user-details-container {
+  overflow: hidden;
+} 
+
 </style>

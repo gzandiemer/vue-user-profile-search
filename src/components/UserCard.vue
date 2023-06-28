@@ -70,4 +70,13 @@ export default defineComponent({
 .user-info {
   flex: 1; 
 }
+
+@media screen and (max-width: 768px) {
+  .user-card{
+    font-size: 0.8rem;
+  }
+
+}
 </style>
+
+

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="user-list">
     <user-card
       v-for="user in filteredUsers"
       :key="user.login.uuid"
@@ -72,13 +72,18 @@ export default defineComponent({
 </script>
 
 <style scoped>
+ .user-list{
+  width: 100%;
+  height: 100vh;
+ }
+
  button {
     display: block;
     width: 90%;
     padding: 1rem;
     margin: 2rem auto;
     color: #fff;
-    background-color: #F18A19; /* Adjust color to match your theme */
+    background-color: #F18A19; 
     border: none;
     border-radius: 50px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
@@ -88,10 +93,10 @@ export default defineComponent({
   }
 
   button:hover {
-    background-color: #D16A00; /* Slightly darker shade for hover effect */
+    background-color: #D16A00; 
   }
 
-  /* Adjust button size for small screens */
+
   @media screen and (max-width: 600px) {
     button {
       padding: 0.8rem;

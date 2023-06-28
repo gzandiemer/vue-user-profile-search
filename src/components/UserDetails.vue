@@ -10,7 +10,7 @@
         <img class="user-picture" :src="user.picture.large" alt="User picture" />
         <div class="user-name-and-id">
           <p class="user-name">{{ formattedName }}</p> 
-          <p>ID: {{ user.login.uuid }}</p>
+          <p class="user-id">ID: {{ user.login.uuid }}</p> 
         </div>
       </div>
       <div class="user-details-container">
@@ -61,23 +61,7 @@ export default defineComponent({
       default: null
     }
   },
-  // setup() {
-  //   // const store = useStore();
-  //   // const isMobile = ref(window.innerWidth <= 768);
-  //   // window.addEventListener('resize', () => {
-  //   //   isMobile.value = window.innerWidth <= 768;
-  //   // });
 
-  //   // const modalWidth = computed(() => (isMobile.value ? '100%' : '60%'));
-
-  //   // const closeModal = () => {
-  //   //   store.commit('clearSelectedUser');
-  //   // };
-
-  //   return {
-  //     closeModal
-  //   };
-  // },
   computed: {
     formattedName() {
       const first =
@@ -104,8 +88,9 @@ export default defineComponent({
   right: 0;
   top: 0;
   height: 100vh;
-  width:60%;
+  width: 60%;
   background-color: rgba(0,0,0,0.4);
+  overflow: hidden;
 }
 
 .modal-header {
@@ -141,7 +126,7 @@ export default defineComponent({
   right: 8%;
   z-index: 15;
   color: #F18A19;
-  font-size: 28px;
+  font-size: 2em;
   font-weight: bold;
   cursor: pointer;
 }
@@ -179,7 +164,7 @@ export default defineComponent({
 }
 
 .user-details-container {
-  width: 100%; 
+   width: 100%;  
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #888; 
@@ -204,6 +189,47 @@ export default defineComponent({
   font-size: 1.4rem; 
   color: #F18A19 ;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1280px) {
+  .modal{
+    width: 100%;
+  }
+
+  .user-name {
+  font-size: 1em; 
+  margin-top: 2rem; 
+  }
+
+  .user-id{
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  .user-picture {
+  width: 120px;
+  height: 120px;
+  margin: 2rem 0 0 0;
+}
+
+.modal-content {
+  padding: 10px;
+}
+
+.user-details-container {
+    flex-direction: column;
+  }
+
+  .user-detail {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .close-button {
+    font-size: 1.5em;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;;
+  }
 }
 
 </style>
