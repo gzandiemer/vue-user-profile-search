@@ -24,16 +24,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default defineComponent({
   emits: ['update-search', 'update-gender'],
   setup(_, { emit }) {
-    // Use Vue 3's Composition API ref to create reactive variables
-    const search = ref('');
-    const gender = ref('');
+    const store = useStore();
+    
+    const search = computed({
+      get: () => store.state.searchQuery,
+      set: (value) => {
+        store.commit('setSearchQuery', value);
+        emit('update-search', value);
+      },
+    });
+
+    const gender = computed({
+      get: () => store.state.gender,
+      set: (value) => {
+        store.commit('setGender', value);
+        emit('update-gender', value);
+      },
+    });
 
     const updateSearch = () => {
-      // Emit updated search value
       emit('update-search', search.value);
     };
 

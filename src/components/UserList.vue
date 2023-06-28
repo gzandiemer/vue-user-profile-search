@@ -21,11 +21,7 @@ import { User } from '../types';
 export default defineComponent({
   name: 'UserList',
   components: { UserCard },
-  props: {
-    search: String,
-    gender: String
-  },
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     const store = useStore();
 
     const fetchUsers = async () => {
@@ -35,17 +31,16 @@ export default defineComponent({
     const users = computed(() => store.state.users as User[]);
 
     const filteredUsers = computed(() => {
+      const searchQuery = store.state.searchQuery.toLowerCase();
+      const genderFilter = store.state.gender;
       return users.value.filter((user: User) => {
-        const searchString = props.search ? props.search.toLowerCase() : '';
         const nameMatch = `${user.name.first} ${user.name.last}`
           .toLowerCase()
-          .includes(searchString);
-        const genderMatch = props.gender === '' || user.gender === props.gender;
+          .includes(searchQuery);
+        const genderMatch = genderFilter === '' || user.gender === genderFilter;
         return nameMatch && genderMatch;
       });
     });
-
-    //const scrollTarget = ref(null);
 
     const onScroll = () => {
       const bottomOfWindow = Math.max(window.pageYOffset,
@@ -70,14 +65,6 @@ export default defineComponent({
     const userSelected = (user: User) => {
         emit('user-selected', user);
     };
-
-    // function handleScroll() {
-    //   // Check if user has scrolled to the bottom of the page
-    //   if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    //     // Load more users
-    //     fetchUsers();
-    //   }
-    // }
 
     return { fetchUsers, users, filteredUsers, userSelected };
   }

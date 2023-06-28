@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from 'vue';
+import { defineComponent, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import SearchBar from '../components/SearchBar.vue';
 import UserDetails from '../components/UserDetails.vue';
@@ -32,28 +32,32 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const selectedUser = ref<User | null>(null);
-    const search = ref('');
-    const gender = ref('');
+    const selectedUser = computed(() => store.state.selectedUser as User | null);
+
+    const search = computed({
+      get: () => store.state.searchQuery,
+      set: (value) => store.commit('setSearchQuery', value)
+    });
+    const gender = computed(() => store.state.gender);
 
     onMounted(async () => {
       store.dispatch('fetchUsers');
     });
 
     const showUserDetails = (user: User) => {
-      selectedUser.value = user;
+      store.commit('setSelectedUser', user);
     };
 
     const updateSearch = (value: string) => {
-      search.value = value;
+      store.commit('setSearchQuery', value);
     };
 
     const updateGender = (value: string) => {
-      gender.value = value;
+      store.commit('setGender', value);
     };
 
     const closeModal = () => {
-      selectedUser.value = null;
+      store.commit('clearSelectedUser');
     };
 
     const userListStyle = computed(() => {
