@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar.vue should render correctly 1`] = `
+<div class="search-bar">
+  <div class="search-bar__input-container"><input class="search-bar__input" type="text" placeholder="Search by name...">
+    <font-awesome-icon icon="fas,search" class="search-icon"></font-awesome-icon>
+  </div><select class="search-bar__select">
+    <option value=""> All </option>
+    <option value="male"> Male </option>
+    <option value="female"> Female </option>
+  </select>
+</div>
+`;

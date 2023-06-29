@@ -19,7 +19,7 @@ npm run build
 ```
 npm run test:unit
 npm run test:unit -- --coverage
-npm run test -- tests/unit/file-name.spec.ts
+npm run test:unit -- tests/unit/file-name.spec.ts
 
 ```
 
@@ -36,9 +36,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 # style filter button (the arrow and the dropdown)
-# add unit tests.
-# fix icon issues!
-# check again if more results button work as intended
+# fix 2 unit tests for homepage
 # refactor
 # deploy
 

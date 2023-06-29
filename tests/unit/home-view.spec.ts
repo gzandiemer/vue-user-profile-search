@@ -37,7 +37,11 @@ describe('HomeView.vue', () => {
     };
 
     actions = {
-      fetchUsers: mockFetchUsers
+      fetchUsers: mockFetchUsers,
+      setSearchQuery: jest.fn(),
+  setGender: jest.fn(),
+  setSelectedUser: jest.fn(),
+  clearSelectedUser: jest.fn(),
     };
 
     mutations = {
@@ -94,6 +98,8 @@ describe('HomeView.vue', () => {
   }); //PASSES
 
   // it('dispatches the correct actions with correct parameters', async () => {
+  //   jest.spyOn(localStore, 'dispatch');
+
   //   const selectedUser = mockUsers[0];
   //   await wrapper.findComponent(SearchBar).vm.$emit('update-search', 'test');
   //   await wrapper.findComponent(SearchBar).vm.$emit('update-gender', 'male');
@@ -106,12 +112,12 @@ describe('HomeView.vue', () => {
     
   //   await wrapper.vm.$nextTick();
 
-  //   expect(localStore.mutations.setSearchQuery).toHaveBeenCalledWith('test');
-  //   expect(localStore.mutations.setGender).toHaveBeenCalledWith('male');
-  //   expect(localStore.mutations.setSelectedUser).toHaveBeenCalledWith(selectedUser);
-  //   expect(localStore.mutations.clearSelectedUser).toHaveBeenCalled();
+  //   expect(localStore.actions.setSearchQuery).toHaveBeenCalledWith('test');
+  //   expect(localStore.actions.setGender).toHaveBeenCalledWith('male');
+  //   expect(localStore.actions.setSelectedUser).toHaveBeenCalledWith(selectedUser);
+  //   expect(localStore.actions.clearSelectedUser).toHaveBeenCalled();
   // });
-  
+ 
 
   it('computes selectedUser, search, and gender from store', () => {
     expect(wrapper.vm.selectedUser).toBe(localStore.state.selectedUser);
@@ -119,18 +125,17 @@ describe('HomeView.vue', () => {
     expect(wrapper.vm.gender).toBe(localStore.state.gender);
   }); // PASSES
 
-  // it('computes userListStyle based on window size and selectedUser', () => {
-  //   localStore.commit('setSelectedUser', mockUsers[0]);
-  //   console.log(wrapper.vm.selectedUser)
-  //   console.log(wrapper.vm.userListStyle)
-  
-  //   Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1280 });
-  //   console.log(wrapper.vm.selectedUser);  // This line is new
-  //   expect(wrapper.vm.userListStyle).toEqual({ width: '40%' });
-  
-  //   Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1000 });
-  //   expect(wrapper.vm.userListStyle).toEqual({ width: '100%' });
-  // });
+//   it('computes userListStyle based on window size and selectedUser', async () => {
+    
+//     Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1280 });
+// localStore.commit('setSelectedUser', mockUsers[0]);
+// await wrapper.vm.$nextTick(); 
+// expect(wrapper.vm.userListStyle).toEqual({ width: '40%' });
+
+// Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1000 });
+// await wrapper.vm.$nextTick();
+// expect(wrapper.vm.userListStyle).toEqual({ width: '100%' });
+//   });
   
 
   it('rerenders UserDetails when selectedUser changes', async () => {
