@@ -15,6 +15,7 @@ describe('UserDetails.vue', () => {
         }
       }
     });
+
     // Checks for user details
     expect(wrapper.find('img').attributes('src')).toBe(user.picture.large);
     expect(wrapper.text()).toContain(user.name.first);
@@ -37,10 +38,11 @@ describe('UserDetails.vue', () => {
         user
       }
     });
+
     // Call closeModal
     await wrapper.vm.closeModal();
+
     // Check if 'close' event was emitted
     expect(wrapper.emitted()).toHaveProperty('close');
   });
 });
-

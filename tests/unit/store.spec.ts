@@ -47,12 +47,12 @@ describe('Vuex Store', () => {
         }
       },
       actions: {
-          async fetchUsers({ commit, state }) {
-            const response = await fetch(`https://randomuser.me/api/?inc=gender,name,location,email,login,phone,picture&page=${state.page}&results=25`);
-            const data = await response.json();
-            commit('setUsers', [...state.users, ...data.results]);
-            commit('incrementPage');
-          }
+        async fetchUsers({ commit, state }) {
+          const response = await fetch(`https://randomuser.me/api/?inc=gender,name,location,email,login,phone,picture&page=${state.page}&results=25`);
+          const data = await response.json();
+          commit('setUsers', [...state.users, ...data.results]);
+          commit('incrementPage');
+        }
       },
       getters: {
         getUser: (state: State) => (id: string) => {
@@ -62,10 +62,7 @@ describe('Vuex Store', () => {
     });
   });
 
-
   const mockUser: User = mockUsers[0];
-   
-
 
   test('setUsers mutation should set users state', () => {
     const users: User[] = [mockUser];
@@ -80,7 +77,7 @@ describe('Vuex Store', () => {
 
   // Add similar tests for other mutations
 
-  //Testing actions usually involves mocking dependencies like APIs and are more complex.
+  // Testing actions usually involves mocking dependencies like APIs and are more complex.
   test('fetchUsers action should fetch users', async () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
@@ -93,7 +90,7 @@ describe('Vuex Store', () => {
     expect(store.state.users.length).toBeGreaterThan(0);
   });
 
-  //Testing getters
+  // Testing getters
   test('getUser getter should return user with given id', () => {
     const users: User[] = [mockUser];
     store.commit('setUsers', users);

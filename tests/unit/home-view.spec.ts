@@ -39,9 +39,9 @@ describe('HomeView.vue', () => {
     actions = {
       fetchUsers: mockFetchUsers,
       setSearchQuery: jest.fn(),
-  setGender: jest.fn(),
-  setSelectedUser: jest.fn(),
-  clearSelectedUser: jest.fn(),
+      setGender: jest.fn(),
+      setSelectedUser: jest.fn(),
+      clearSelectedUser: jest.fn(),
     };
 
     mutations = {
@@ -112,7 +112,7 @@ describe('HomeView.vue', () => {
     
   //   await wrapper.vm.$nextTick();
 
-  //   expect(localStore.actions.setSearchQuery).toHaveBeenCalledWith('test');
+    //   expect(localStore.actions.setSearchQuery).toHaveBeenCalledWith('test');
   //   expect(localStore.actions.setGender).toHaveBeenCalledWith('male');
   //   expect(localStore.actions.setSelectedUser).toHaveBeenCalledWith(selectedUser);
   //   expect(localStore.actions.clearSelectedUser).toHaveBeenCalled();
@@ -149,3 +149,4 @@ describe('HomeView.vue', () => {
 
 
 
+  
