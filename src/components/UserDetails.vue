@@ -15,37 +15,22 @@
       </div>
       <div class="user-details-container">
       <div class="user-detail">
-        <font-awesome-icon icon="['far', 'map-market-alt']" class="icon"></font-awesome-icon>
+        <font-awesome-icon :icon="['fas', 'location-dot']" style="color: #f18a19;"></font-awesome-icon>
         <div>
           <p>{{ user.location.street.name }} {{ user.location.street.number }} {{ user.location.postcode }} {{ user.location.city }}</p>
           <p>{{ user.location.state }}, {{ user.location.country }}</p>
         </div>
       </div>
       <div class="user-detail">
-        <font-awesome-icon icon="['far', 'envelope']" class="icon"></font-awesome-icon>
+        <font-awesome-icon :icon="['fas', 'envelope']" style="color: #f18a19;"></font-awesome-icon>
         <p> {{ user.email }}</p>
       </div>
       <div class="user-detail">
-        <font-awesome-icon icon="['far', 'phone']" class="icon"></font-awesome-icon>
+        <font-awesome-icon :icon="['fas', 'phone']" style="color: #f18a19;"></font-awesome-icon>
         <p> {{ user.phone }}</p>
       </div>
     </div>
   </div>
-      <!-- <div class="user-details-container">
-        <div class="user-detail">
-        <font-awesome-icon icon="['far', 'map-market-alt']" class="icon"></font-awesome-icon>
-        <p>Address:
-      {{ user.location.street.name }} {{ user.location.street.number }} {{ user.location.postcode }} {{ user.location.city }}</p>
-        <p>{{ user.location.state }}, {{ user.location.country }}</p>
-      </div>
-      <div class="user-contact">
-        <font-awesome-icon icon="['far', 'envelope']" class="icon"></font-awesome-icon>
-        <p>Email: {{ user.email }}</p>
-        <font-awesome-icon icon="['far', 'phone']" class="icon"></font-awesome-icon>
-        <p>Phone: {{ user.phone }}</p>
-      </div> 
-      </div>
-    </div> -->
   </div>
 </template>
 

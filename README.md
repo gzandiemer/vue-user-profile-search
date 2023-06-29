@@ -18,6 +18,9 @@ npm run build
 ### Run your unit tests
 ```
 npm run test:unit
+npm run test:unit -- --coverage
+npm run test -- tests/unit/file-name.spec.ts
+
 ```
 
 ### Lints and fixes files

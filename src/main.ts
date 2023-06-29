@@ -13,10 +13,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 
 /* add icons to the library */
-library.add(faSearch, faEnvelope, faPhone, faMapMarkerAlt)
+library.add(faSearch, faPhone, faEnvelope, faLocationDot )
 
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).mount('#app')

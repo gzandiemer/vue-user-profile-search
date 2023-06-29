@@ -5,5 +5,8 @@ module.exports = {
     '!src/main.ts', // Exclude specific files as necessary
     '!**/node_modules/**',
     '!**/vendor/**'
-  ]
+  ],
+  moduleNameMapper: {
+    '^#/(.*)$': '<rootDir>/tests/$1'
+  }
 };

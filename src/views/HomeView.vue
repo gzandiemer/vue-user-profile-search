@@ -7,7 +7,7 @@
     />
     <user-list 
       @user-selected="showUserDetails"
-      :search="search"
+      :search="searchQuery"
       :gender="gender"
     />
     </div>
@@ -34,13 +34,25 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const selectedUser = computed(() => store.state.selectedUser as User | null);
+    // const selectedUser = computed(() => store.state.selectedUser as User | null);
+    const selectedUser = computed(() => store.state.selectedUser);
 
-    const search = computed({
-      get: () => store.state.searchQuery,
+    // const search = computed({
+    //   get: () => store.state.searchQuery,
+    //   set: (value) => store.commit('setSearchQuery', value)
+    // });
+    // const gender = computed(() => store.state.gender);
+
+    const searchQuery = computed({
+      get: () => store.state.searchQuery || '',
       set: (value) => store.commit('setSearchQuery', value)
     });
-    const gender = computed(() => store.state.gender);
+
+
+    const gender = computed({
+      get: () => store.state.gender,
+      set: (value) => store.commit('setGender', value)
+  });
 
     onMounted(async () => {
       store.dispatch('fetchUsers');
@@ -72,7 +84,7 @@ export default defineComponent({
 
     return {
       selectedUser,
-      search,
+      searchQuery,
       gender,
       updateSearch,
       updateGender,
