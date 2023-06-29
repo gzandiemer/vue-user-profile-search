@@ -5,7 +5,7 @@ import UserList from '@/components/UserList.vue';
 import UserDetails from '@/components/UserDetails.vue';
 import { createStore } from 'vuex';
 import { cloneDeep } from 'lodash';
-import { State } from "@/store";
+import { State } from '@/store';
 import { mockUsers } from '#/mocks';
 
 interface MyStoreOptions {
@@ -38,10 +38,6 @@ describe('HomeView.vue', () => {
 
     actions = {
       fetchUsers: mockFetchUsers,
-      setSearchQuery: jest.fn(),
-      setGender: jest.fn(),
-      setSelectedUser: jest.fn(),
-      clearSelectedUser: jest.fn(),
     };
 
     mutations = {
@@ -76,7 +72,7 @@ describe('HomeView.vue', () => {
           'search-bar': SearchBar,
           'user-list': UserList,
           'user-details': UserDetails,
-          'font-awesome-icon': true 
+          'font-awesome-icon': true
         }
       }
     });
@@ -93,7 +89,19 @@ describe('HomeView.vue', () => {
 
   it('renders UserDetails when there is a selectedUser', async () => {
     localStore.state.selectedUser = mockUsers[0];
-    await wrapper.vm.$nextTick();  // Wait for re-render
+    await wrapper.vm.$nextTick(); // Wait for re-render
+    expect(wrapper.findComponent(UserDetails).exists()).toBe(true);
+  }); //PASSES
+
+  it('computes selectedUser, search, and gender from store', () => {
+    expect(wrapper.vm.selectedUser).toBe(localStore.state.selectedUser);
+    expect(wrapper.vm.searchQuery).toBe(localStore.state.searchQuery);
+    expect(wrapper.vm.gender).toBe(localStore.state.gender);
+  }); // PASSES
+
+  it('rerenders UserDetails when selectedUser changes', async () => {
+    localStore.state.selectedUser = mockUsers[0];
+    await wrapper.vm.$nextTick();
     expect(wrapper.findComponent(UserDetails).exists()).toBe(true);
   }); //PASSES
 
@@ -104,49 +112,45 @@ describe('HomeView.vue', () => {
   //   await wrapper.findComponent(SearchBar).vm.$emit('update-search', 'test');
   //   await wrapper.findComponent(SearchBar).vm.$emit('update-gender', 'male');
   //   await wrapper.findComponent(UserList).vm.$emit('user-selected', selectedUser);
-    
+
   //   await wrapper.vm.$nextTick();
 
   //   // Emit the close event on the wrapper
   //   await wrapper.vm.$emit('close');
-    
+
   //   await wrapper.vm.$nextTick();
 
-    //   expect(localStore.actions.setSearchQuery).toHaveBeenCalledWith('test');
-  //   expect(localStore.actions.setGender).toHaveBeenCalledWith('male');
-  //   expect(localStore.actions.setSelectedUser).toHaveBeenCalledWith(selectedUser);
-  //   expect(localStore.actions.clearSelectedUser).toHaveBeenCalled();
+  //   expect(actions.setSearchQuery).toHaveBeenCalledWith('test');
+  //   expect(actions.setGender).toHaveBeenCalledWith('male');
+  //   expect(actions.setSelectedUser).toHaveBeenCalledWith(selectedUser);
+  //   expect(actions.clearSelectedUser).toHaveBeenCalled();
   // });
- 
 
-  it('computes selectedUser, search, and gender from store', () => {
-    expect(wrapper.vm.selectedUser).toBe(localStore.state.selectedUser);
-    expect(wrapper.vm.searchQuery).toBe(localStore.state.searchQuery);
-    expect(wrapper.vm.gender).toBe(localStore.state.gender);
-  }); // PASSES
-
-//   it('computes userListStyle based on window size and selectedUser', async () => {
-    
-//     Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1280 });
-// localStore.commit('setSelectedUser', mockUsers[0]);
-// await wrapper.vm.$nextTick(); 
-// expect(wrapper.vm.userListStyle).toEqual({ width: '40%' });
-
-// Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1000 });
-// await wrapper.vm.$nextTick();
-// expect(wrapper.vm.userListStyle).toEqual({ width: '100%' });
-//   });
+  // it('commits the correct mutations with correct parameters', async () => {
+  //   const selectedUser = mockUsers[0];
+  //   await wrapper.findComponent(SearchBar).vm.$emit('update-search', 'test');
+  //   await wrapper.findComponent(SearchBar).vm.$emit('update-gender', 'male');
+  //   await wrapper.findComponent(UserList).vm.$emit('user-selected', selectedUser);
   
-
-  it('rerenders UserDetails when selectedUser changes', async () => {
-    localStore.state.selectedUser = mockUsers[0];
-    await wrapper.vm.$nextTick();
-    expect(wrapper.findComponent(UserDetails).exists()).toBe(true);
-  }); //PASSES
-
+  //   await wrapper.vm.$nextTick(); // update after user-selected
+  
+  //   console.log(localStore.state); // Print current state of the store
+  
+  //   console.log(wrapper.html()); // Print current state of the component
+  
+  //   // Emit the close event on the UserDetails component
+  //   await wrapper.findComponent({ name: 'UserDetails' }).vm.$emit('close');
+  
+  //   await wrapper.vm.$nextTick(); // update after close
+  
+  //   expect(mutations.setSearchQuery).toHaveBeenCalledWith(expect.anything(), 'test');
+  //   expect(mutations.setGender).toHaveBeenCalledWith(expect.anything(), 'male');
+  //   expect(mutations.setSelectedUser).toHaveBeenCalledWith(expect.anything(), selectedUser);
+  //   expect(mutations.clearSelectedUser).toHaveBeenCalled();
+  // });
+  
+  
+  
+  
+  
 });
-
-
-
-
-  

@@ -1,8 +1,14 @@
-import { mount } from "@vue/test-utils";
-import SearchBar from "@/components/SearchBar.vue";
-import { createStore } from "vuex";
+import { mount } from '@vue/test-utils';
+import SearchBar from '@/components/SearchBar.vue';
+import { createStore } from 'vuex';
 import { cloneDeep } from 'lodash';
-import { State } from "@/store";
+import { State } from '@/store';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+// Add the icons to the library
+library.add(faSearch)
 
 interface MyStoreOptions {
   state: State;
@@ -20,6 +26,8 @@ describe('SearchBar.vue', () => {
   let localStoreConfig: MyStoreOptions;
   let wrapper: any;
 
+  const mockFetchUsers = jest.fn();
+
   beforeEach(() => {
     state = {
       users: [],
@@ -30,14 +38,23 @@ describe('SearchBar.vue', () => {
       gender: ''
     };
 
-    actions = {};
-
-    mutations = {
-      setSearchQuery: jest.fn(),
-      setGender: jest.fn()
+    actions = {
+      fetchUsers: mockFetchUsers
     };
 
-    getters = {};
+    mutations = {
+      setUsers: jest.fn(),
+      setSelectedUser: jest.fn(),
+      clearSelectedUser: jest.fn(),
+      setSearchQuery: jest.fn(),
+      setFilter: jest.fn(),
+      setGender: jest.fn(),
+      incrementPage: jest.fn()
+    };
+
+    getters = {
+      getUser: jest.fn()
+    };
 
     localStoreConfig = {
       state,
@@ -49,13 +66,22 @@ describe('SearchBar.vue', () => {
     localStore = createStore(cloneDeep(localStoreConfig));
   });
 
+  // const mockFontAwesome = {
+  //   install(app: any) {
+  //     app.component('font-awesome-icon', {
+  //       template: '<div class="fa-icon"></div>'
+  //     });
+  //   },
+  // };
+
   beforeEach(() => {
-    wrapper = mount(SearchBar, { global: { plugins: [localStore] } });
+    wrapper = mount(SearchBar, { global: { plugins: [localStore, FontAwesomeIcon] } });
   });
 
-  // it('should render correctly', () => {
-  //   expect(wrapper.html()).toMatchSnapshot();
-  // });
+
+  it('should render correctly', () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 
   it('emits "update-search" event and updates store on input', async () => {
     const input = wrapper.find('.search-bar__input');
@@ -67,13 +93,18 @@ describe('SearchBar.vue', () => {
     expect(wrapper.emitted('update-search')?.[0]).toEqual(['test search']);
   }); //PASSES
 
-  // it('emits "update-gender" event and updates store on select', async () => {
-  //   const select = wrapper.find('.search-bar__select');
-  //   await select.setValue('male');
+  it('emits "update-gender" event and updates store on select', async () => {
+  const dropdown = wrapper.find('.search-bar__select');
+  await dropdown.trigger('click'); // opens the dropdown
 
-  //   expect(mutations.setGender).toHaveBeenCalled();
-  //   expect(wrapper.emitted('update-gender')).toBeTruthy();
-  //   expect(wrapper.emitted('update-gender')?.[0]).toEqual(['male']);
-  // });
+  await wrapper.vm.$nextTick(); // wait for the dropdown to open
 
+  const option = wrapper.findAll('.option').filter((w: { text: () => string; }) => w.text() === 'Male')[0];
+  await option.trigger('click'); // selects the "Male" option
+
+  // Check the mutation
+  expect(mutations.setGender).toHaveBeenCalled();
+});
+
+  
 });

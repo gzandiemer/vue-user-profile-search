@@ -32,24 +32,6 @@
       </div>
     </div>
   </div>
-
-  <!-- 
-     <select
-      class="search-bar__select"
-      v-model="gender"
-      @change="updateGender"
-    >
-      <option value="">
-        All
-      </option>
-      <option value="male">
-        Male
-      </option>
-      <option value="female">
-        Female
-      </option>
-    </select>
-  </div>  -->
 </template>
 
 <script lang="ts">

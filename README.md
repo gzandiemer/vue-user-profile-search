@@ -32,12 +32,19 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### TO DO: 
-# use this colors: #F18A19(orange) , #424242(grey), #fffff, #252525 (dark grey)
+ 
 
+# fix not passing unit tests 
 
-# style filter button (the arrow and the dropdown)
-# fix 2 unit tests for homepage
-# refactor
+# increase unit test coverage
+# move select button below search bar on mobiles
+
+# move search icon to placeholder
+
+# more styling of the card? and buttons? a d user cards?
+
+# format. refactor and comment on the main files
+
 # deploy
 
 

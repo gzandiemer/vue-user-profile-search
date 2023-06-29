@@ -4,10 +4,14 @@ exports[`SearchBar.vue should render correctly 1`] = `
 <div class="search-bar">
   <div class="search-bar__input-container"><input class="search-bar__input" type="text" placeholder="Search by name...">
     <font-awesome-icon icon="fas,search" class="search-icon"></font-awesome-icon>
-  </div><select class="search-bar__select">
-    <option value=""> All </option>
-    <option value="male"> Male </option>
-    <option value="female"> Female </option>
-  </select>
+  </div>
+  <div class="search-bar__select">
+    <div class="selected-option">All <span class="arrow-down">▾</span><span class="arrow-up" style="display: none;">▴</span></div>
+    <div class="options" style="display: none;">
+      <div class="option">All</div>
+      <div class="option">Male</div>
+      <div class="option">Female</div>
+    </div>
+  </div>
 </div>
 `;

@@ -4,7 +4,8 @@ import UserCard from "@/components/UserCard.vue";
 import { createStore } from "vuex";
 import { cloneDeep } from 'lodash';
 import { State } from "@/store";
-import { mockUsers } from '#/mocks';
+import { mockUsers } from '#/mocks'; 
+
 
 interface MyStoreOptions {
   state: State;
@@ -91,4 +92,30 @@ describe('UserList.vue', () => {
           throw new Error('No UserCard components found');
         }
       });
+
+      it('calls "fetchUsers" when "More results..." button is clicked', async () => {
+        const moreButton = wrapper.find('button'); 
+        await moreButton.trigger('click');
+        expect(actions.fetchUsers).toHaveBeenCalled(); 
+      });
+
+      it('calls "fetchUsers" when component is mounted', () => {
+        expect(actions.fetchUsers).toHaveBeenCalled();
+      });
+      
+      
+      it('calls "fetchUsers" when window is scrolled to bottom', async () => {
+        Object.defineProperty(window, 'pageYOffset', {value: 1000}); // Simulate window.pageYOffset
+        document.documentElement.scrollTop = 1000; // Simulate document.documentElement.scrollTop
+        document.body.scrollTop = 1000; // Simulate document.body.scrollTop
+        Object.defineProperty(document.documentElement, 'offsetHeight', {value: 1000}); // Simulate document.documentElement.offsetHeight
+        window.innerHeight = 1000; // Simulate window.innerHeight
+      
+        window.dispatchEvent(new Event('scroll'));
+      
+        await wrapper.vm.$nextTick();
+        expect(actions.fetchUsers).toHaveBeenCalled();
+      });
+      
+      
     });
