@@ -1,13 +1,15 @@
 import { mount } from '@vue/test-utils';
-import SearchBar from '@/components/SearchBar.vue';
-import { createStore } from 'vuex';
+
 import { cloneDeep } from 'lodash';
-import { State } from '@/store';
+import { createStore } from 'vuex';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-// Add the icons to the library
+import { State } from '@/store';
+
+import SearchBar from '@/components/SearchBar.vue';
+
 library.add(faSearch)
 
 interface MyStoreOptions {

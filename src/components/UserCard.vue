@@ -15,7 +15,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { User } from '../types';
+
+import { User } from '@/types';
 
 export default defineComponent({
   props: {

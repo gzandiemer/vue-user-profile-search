@@ -1,9 +1,12 @@
 import { mount } from "@vue/test-utils";
-import UserCard from "@/components/UserCard.vue";
-import { createStore } from "vuex";
+
 import { cloneDeep } from 'lodash';
+import { createStore } from "vuex";
+
 import { State } from "@/store";
 import { mockUsers } from '#/mocks';
+
+import UserCard from "@/components/UserCard.vue";
 
 interface MyStoreOptions {
   state: State;

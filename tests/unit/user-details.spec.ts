@@ -1,6 +1,8 @@
 import { mount } from '@vue/test-utils';
-import UserDetails from '@/components/UserDetails.vue';
+
 import { mockUsers } from '#/mocks';
+
+import UserDetails from '@/components/UserDetails.vue';
 
 describe('UserDetails.vue', () => {
   it('displays user details correctly', () => {

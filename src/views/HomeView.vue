@@ -1,115 +1,111 @@
 <template>
   <div class="app-container">
     <div class="user-list" :style="userListStyle">
-    <search-bar
-      @update-search="updateSearch"
-      @update-gender="updateGender"
-    />
-    <user-list 
-      @user-selected="showUserDetails"
-      :search="searchQuery"
-      :gender="gender"
-    />
+      <search-bar @update-search="updateSearch" @update-gender="updateGender" />
+      <user-list
+        @user-selected="showUserDetails"
+        :search="searchQuery"
+        :gender="gender"
+      />
     </div>
     <div class="user-details-container">
-      <user-details v-if="selectedUser" :user="selectedUser" @close="closeModal"/>
+      <user-details
+        v-if="selectedUser"
+        :user="selectedUser"
+        @close="closeModal"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import SearchBar from '../components/SearchBar.vue';
-import UserDetails from '../components/UserDetails.vue';
-import UserList from '../components/UserList.vue';
-import { User } from '../types';
+import { computed, defineComponent, onMounted } from "vue";
+import { useStore } from "vuex";
+
+import { User } from "@/types";
+
+import SearchBar from "@/components/SearchBar.vue";
+import UserDetails from "@/components/UserDetails.vue";
+import UserList from "@/components/UserList.vue";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    SearchBar, 
+    SearchBar,
     UserDetails,
-    UserList
+    UserList,
   },
   setup() {
     const store = useStore();
-    // const selectedUser = computed(() => store.state.selectedUser as User | null);
-    const selectedUser = computed(() => store.state.selectedUser);
-
-    // const search = computed({
-    //   get: () => store.state.searchQuery,
-    //   set: (value) => store.commit('setSearchQuery', value)
-    // });
-    // const gender = computed(() => store.state.gender);
+    const selectedUser = computed(
+      () => store.state.selectedUser as User | null
+    );
 
     const searchQuery = computed({
-      get: () => store.state.searchQuery || '',
-      set: (value) => store.commit('setSearchQuery', value)
+      get: () => store.state.searchQuery || "",
+      set: (value) => store.commit("setSearchQuery", value),
     });
-
 
     const gender = computed({
       get: () => store.state.gender,
-      set: (value) => store.commit('setGender', value)
-  });
-
-    onMounted(async () => {
-      store.dispatch('fetchUsers');
+      set: (value) => store.commit("setGender", value),
     });
-
-    const showUserDetails = (user: User) => {
-      store.commit('setSelectedUser', user);
-    };
-
-    const updateSearch = (value: string) => {
-      store.commit('setSearchQuery', value);
-    };
-
-    const updateGender = (value: string) => {
-      store.commit('setGender', value);
-    };
-
-    const closeModal = () => {
-      store.commit('clearSelectedUser');
-    };
 
     const userListStyle = computed(() => {
       if (window.innerWidth >= 1280 && selectedUser.value) {
-        return { width: '40%' };
+        return { width: "40%" };
       } else {
-        return { width: '100%' };
+        return { width: "100%" };
       }
     });
+
+    onMounted(async () => {
+      store.dispatch("fetchUsers");
+    });
+
+    const updateSearch = (value: string) => {
+      store.commit("setSearchQuery", value);
+    };
+
+    const updateGender = (value: string) => {
+      store.commit("setGender", value);
+    };
+
+    const showUserDetails = (user: User) => {
+      store.commit("setSelectedUser", user);
+    };
+
+    const closeModal = () => {
+      store.commit("clearSelectedUser");
+    };
 
     return {
       selectedUser,
       searchQuery,
       gender,
+      userListStyle,
       updateSearch,
       updateGender,
       showUserDetails,
       closeModal,
-      userListStyle
     };
-  }
+  },
 });
 </script>
 
 <style scoped>
- .app-container {
+.app-container {
   display: flex;
   height: 100vh;
   width: 100%;
 }
 
-.user-list { 
-  overflow-y: auto; 
+.user-list {
+  overflow-y: auto;
   height: 100vh;
 }
 
- .user-details-container {
+.user-details-container {
   overflow: hidden;
-} 
-
+}
 </style>

@@ -1,12 +1,22 @@
+// Test-specific libraries
 import { mount } from '@vue/test-utils';
-import HomeView from '@/views/HomeView.vue';
-import SearchBar from '@/components/SearchBar.vue';
-import UserList from '@/components/UserList.vue';
-import UserDetails from '@/components/UserDetails.vue';
+
+// Other libraries
 import { createStore } from 'vuex';
 import { cloneDeep } from 'lodash';
+
+// Your own modules
 import { State } from '@/store';
 import { mockUsers } from '#/mocks';
+
+// Components and views, alphabetical order
+import SearchBar from '@/components/SearchBar.vue';
+import UserDetails from '@/components/UserDetails.vue';
+import UserList from '@/components/UserList.vue';
+
+// Component being tested last
+import HomeView from '@/views/HomeView.vue';
+
 
 interface MyStoreOptions {
   state: State;

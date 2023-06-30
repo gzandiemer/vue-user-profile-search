@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import { User } from '../types';
+
+import { User } from '@/types';
 
 export interface State {
   users: User[];
@@ -13,7 +14,7 @@ export interface State {
 
 export default createStore({
   plugins: [createPersistedState({
-    paths: ['users', 'selectedUser', 'filter', 'page', 'gender']
+    paths: ['users', 'selectedUser', 'filter', 'page', 'gender', 'searchQuery']
   })],
   state: {
     users: [],
@@ -44,7 +45,7 @@ export default createStore({
     },
     incrementPage(state: State){
       state.page +=1;
-      localStorage.setItem('page', JSON.stringify(state.page));
+      //localStorage.setItem('page', JSON.stringify(state.page));
     }
   },
   actions: {
@@ -58,6 +59,17 @@ export default createStore({
   getters: {
     getUser: (state: State) => (id: string) => {
       return state.users.find((user) => user.login.uuid === id);
+    },
+    filteredUsers: (state: State) => {
+      const searchQuery = state.searchQuery.toLowerCase();
+      const genderFilter = state.gender;
+      return state.users.filter((user: User) => {
+        const nameMatch = `${user.name.first} ${user.name.last}`
+          .toLowerCase()
+          .includes(searchQuery);
+        const genderMatch = genderFilter === "" || user.gender === genderFilter;
+        return nameMatch && genderMatch;
+      });
     }
   }
 });

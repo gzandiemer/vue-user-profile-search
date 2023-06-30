@@ -1,6 +1,7 @@
 import { Store, createStore } from 'vuex';
-import { State } from '@/store';
 import createPersistedState from 'vuex-persistedstate';
+
+import { State } from '@/store';
 import { User } from '@/types';
 import { mockUsers } from '#/mocks';
 
