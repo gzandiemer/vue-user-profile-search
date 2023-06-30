@@ -129,28 +129,11 @@ export default defineComponent({
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
-  margin-top: 2%;
-}
-
-.search-bar__input {
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  padding-left: 3rem;
-  background-size: 3rem;
-}
-
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
-  color: #f18a19;
-  pointer-events: none;
+  width: 60%;
+  height: 50px;
+  box-sizing: border-box;
+  margin-top: 8%;
+  margin-left: 5%;
 }
 
 .search-bar {
@@ -158,14 +141,37 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.search-icon {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: #f18a19;
+  pointer-events: none;
 }
 
+.search-bar__input {
+  width: 100%;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  padding-left: 4rem;
+  background-size: 3rem;
+}
 .search-bar__select {
-  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8%;
   margin-right: 8%;
-  width: 15%;
-  padding: 1rem;
+  width: 25%;
+  height: 50px;
+  box-sizing: border-box;
   border: none;
   border-radius: 50px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -178,7 +184,7 @@ export default defineComponent({
 
 .selected-option {
   text-align: center;
-  padding-right: 1rem; /* space for the arrow */
+  padding-right: 1.5rem; /* space for the arrow */
   position: relative;
 }
 
@@ -192,7 +198,7 @@ export default defineComponent({
 
 .options {
   position: absolute;
-  width: 16%;
+  width: 12%;
   background-color: #f8f9fa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
@@ -228,14 +234,20 @@ export default defineComponent({
 
 @media screen and (max-width: 600px) {
   .search-bar__input-container {
-    margin-top: 4%;
+    margin: 1rem auto;
+    width: 100%;
+    font-size: 1rem;
   }
   .search-bar {
-    margin-left: 1%;
-    width: 90%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
   .search-bar__input {
-    padding-left: 3rem;
+    padding-left: 4rem;
+    margin: 0 auto;
+    width: 90%;
   }
 
   .search-icon {
@@ -244,13 +256,12 @@ export default defineComponent({
   }
 
   .search-bar__select {
-    width: 30%;
-    padding: 0.5rem;
-    margin-left: 3%;
+    width: 50%;
+    margin: 0.5rem auto;
+    justify-content: center;
   }
-
   .options {
-    width: 30%;
+    width: 50%;
   }
 }
 </style>

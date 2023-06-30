@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="user-list" :style="userListStyle">
       <!-- <div class="user-list"> -->
-      <search-bar @update-search="updateSearch" @update-gender="updateGender" />
+      <search-bar class="search-bar" @update-search="updateSearch" @update-gender="updateGender" />
       <user-list
         @user-selected="showUserDetails"
         :search="searchQuery"
@@ -104,7 +104,15 @@ export default defineComponent({
 .user-list {
   overflow-y: auto;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* .search-bar {
+  max-width: 600px; 
+  margin: 0 auto;
+} */
 
 .user-details-container {
   overflow: hidden;

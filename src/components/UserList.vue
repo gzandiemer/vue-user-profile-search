@@ -6,7 +6,7 @@
       :user="user"
       @user-selected="$emit('user-selected', $event)"
     />
-    <button @click="fetchUsers">More results...</button>
+    <button class="more-results-button" @click="fetchUsers">More results...</button>
   </div>
 </template>
 
@@ -72,29 +72,42 @@ export default defineComponent({
   height: 100vh;
 }
 
-button {
+.more-results-button {
   display: block;
-  width: 90%;
+  width: 25%;
   padding: 1rem;
   margin: 2rem auto;
   color: #fff;
-  background-color: #f18a19;
+  background: linear-gradient(to right, #f18a19, #ff9800);
   border: none;
   border-radius: 50px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
-button:hover {
-  background-color: #d16a00;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.more-results-button:hover {
+  background: linear-gradient(to right, #d16a00, #ff7800);
 }
 
 @media screen and (max-width: 600px) {
-  button {
+  .more-results-button {
     padding: 0.8rem;
     font-size: 1rem;
+    width: 100%;
   }
 }
 </style>
