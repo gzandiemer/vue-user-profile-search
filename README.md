@@ -31,22 +31,14 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### TO DO: 
-
-# refactor userdetailmodal
- 
+### TO DO:  
 # fix overflow problem
 
  # move select button below search bar on mobiles
 
-# move search icon to placeholder
 
 # more styling of the card? and buttons? a d user cards?
 # update snapshots and unit tests
-
-#
-
-
 
 # format. refactor and comment on the main files
 

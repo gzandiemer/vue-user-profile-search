@@ -1,6 +1,9 @@
 <template>
   <div class="search-bar">
     <div class="search-bar__input-container">
+      <div class="search-icon">
+        <font-awesome-icon :icon="['fas', 'search']"></font-awesome-icon>
+      </div>
       <input
         class="search-bar__input"
         v-model="search"
@@ -8,69 +11,64 @@
         placeholder="Search by name..."
         @input="updateSearch"
       />
-      <font-awesome-icon
-        :icon="['fas', 'search']"
-        class="search-icon"
-      ></font-awesome-icon>
     </div>
-
-    <div class="search-bar__select" @click="open = !open">
-      <div class="selected-option">
-        {{ selectedOptionText }}
-        <span class="arrow-down" v-show="!open">&#9662;</span>
-        <span class="arrow-up" v-show="open">&#9652;</span>
-      </div>
-      <div class="options" v-show="open">
-        <div
-          class="option"
-          v-for="option in options"
-          :key="option.value"
-          @click.stop="selectOption(option.value)"
-        >
-          {{ option.text }}
+      <div class="search-bar__select" @click="open = !open">
+        <div class="selected-option">
+          {{ selectedOptionText }}
+          <span class="arrow-down" v-show="!open">&#9662;</span>
+          <span class="arrow-up" v-show="open">&#9652;</span>
+        </div>
+        <div class="options" v-show="open">
+          <div
+            class="option"
+            v-for="option in options"
+            :key="option.value"
+            @click.stop="selectOption(option.value)"
+          >
+            {{ option.text }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
-import { useStore } from "vuex";
+import { defineComponent, ref, computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default defineComponent({
-  emits: ["update-search", "update-gender"],
+  emits: ['update-search', 'update-gender'],
   setup(_, { emit }) {
     const store = useStore();
     const open = ref<boolean>(false);
     const options = ref<Array<{ text: string; value: string }>>([
-      { text: "All", value: "" },
-      { text: "Male", value: "male" },
-      { text: "Female", value: "female" },
+      { text: 'All', value: '' },
+      { text: 'Male', value: 'male' },
+      { text: 'Female', value: 'female' }
     ]);
 
     const search = computed({
       get: () => store.state.searchQuery,
       set: (value) => {
-        store.commit("setSearchQuery", value);
-        emit("update-search", value);
-      },
+        store.commit('setSearchQuery', value);
+        emit('update-search', value);
+      }
     });
 
     const gender = computed({
       get: () => store.state.gender,
       set: (value) => {
-        store.commit("setGender", value);
-        emit("update-gender", value);
-      },
+        store.commit('setGender', value);
+        emit('update-gender', value);
+      }
     });
 
     const updateSearch = () => {
-      emit("update-search", search.value);
+      emit('update-search', search.value);
     };
 
     const updateGender = () => {
-      emit("update-gender", gender.value);
+      emit('update-gender', gender.value);
     };
 
     const selectOption = (value: string) => {
@@ -78,14 +76,14 @@ export default defineComponent({
         (option) => option.value === value
       )?.text;
       console.log(`Option ${value} selected. Option text: ${optionText}`);
-      store.commit("setGender", value);
-      emit("update-gender", value);
+      store.commit('setGender', value);
+      emit('update-gender', value);
       open.value = false;
     };
 
     const selectedOptionText = computed(() => {
       const option = options.value.find((opt) => opt.value === gender.value);
-      return option ? option.text : "";
+      return option ? option.text : '';
     });
 
     return {
@@ -96,67 +94,71 @@ export default defineComponent({
       selectOption,
       selectedOptionText,
       updateSearch,
-      updateGender,
+      updateGender
     };
   },
   data() {
     return {
-      isSmallScreen: window.innerWidth <= 600, // You can adjust the value as needed
+      isSmallScreen: window.innerWidth <= 600 // You can adjust the value as needed
     };
   },
   computed: {
     maleOptionText() {
-      return this.isSmallScreen ? "M" : "Male";
+      return this.isSmallScreen ? 'M' : 'Male';
     },
     femaleOptionText() {
-      return this.isSmallScreen ? "F" : "Female";
-    },
+      return this.isSmallScreen ? 'F' : 'Female';
+    }
   },
   created() {
-    window.addEventListener("resize", this.updateScreenWidth);
+    window.addEventListener('resize', this.updateScreenWidth);
   },
   unmounted() {
-    window.removeEventListener("resize", this.updateScreenWidth);
+    window.removeEventListener('resize', this.updateScreenWidth);
   },
   methods: {
     updateScreenWidth() {
       this.isSmallScreen = window.innerWidth <= 600;
-    },
-  },
+    }
+  }
 });
 </script>
 
 <style scoped>
 .search-bar__input-container {
   position: relative;
-  width: 80%;
+  display: flex;
+  align-items: center;
+  width: 70%;
   margin-top: 2%;
 }
+
+.search-bar__input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  padding-left: 3rem;
+  background-size: 3rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: #f18a19;
+  pointer-events: none;
+}
+
 .search-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: 2rem;
-}
-
-.search-bar__input {
-  width: 70%;
-  padding: 1rem;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  padding-left: 4rem;
-  background-size: 3rem;
-}
-
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 14%;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
-  color: #f18a19;
 }
 
 .search-bar__select {
@@ -252,4 +254,3 @@ export default defineComponent({
   }
 }
 </style>
-
