@@ -6,7 +6,7 @@ import { createStore } from "vuex";
 import { State } from "@/store";
 import { mockUsers } from '#/mocks';
 
-import UserCard from "@/components/UserCard.vue";
+import UserSummaryCard from "@/components/UserSummaryCard.vue";
 
 interface MyStoreOptions {
   state: State;
@@ -15,7 +15,7 @@ interface MyStoreOptions {
   getters: any;
 }
 
-describe('UserCard.vue', () => {
+describe('UserSummaryCard.vue', () => {
   let state: State;
   let actions: any;
   let mutations: any;
@@ -53,7 +53,7 @@ describe('UserCard.vue', () => {
   });
 
   beforeEach(() => {
-    wrapper = mount(UserCard, { 
+    wrapper = mount(UserSummaryCard, { 
       props: { user: mockUsers[0] },
       global: { plugins: [localStore] } 
     });

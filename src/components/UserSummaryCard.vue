@@ -19,6 +19,7 @@ import { defineComponent } from 'vue';
 import { User } from '@/types';
 
 export default defineComponent({
+  name: "UserSummaryCard",
   props: {
     user: {
       type: Object as () => User,

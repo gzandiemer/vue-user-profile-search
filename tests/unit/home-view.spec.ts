@@ -11,7 +11,7 @@ import { mockUsers } from '#/mocks';
 
 // Components and views, alphabetical order
 import SearchBar from '@/components/SearchBar.vue';
-import UserDetails from '@/components/UserDetails.vue';
+import UserDetailModal from '@/components/UserDetailModal.vue';
 import UserList from '@/components/UserList.vue';
 
 // Component being tested last
@@ -81,7 +81,7 @@ describe('HomeView.vue', () => {
         stubs: {
           'search-bar': SearchBar,
           'user-list': UserList,
-          'user-details': UserDetails,
+          'user-detail-modal': UserDetailModal,
           'font-awesome-icon': true
         }
       }
@@ -93,14 +93,14 @@ describe('HomeView.vue', () => {
     expect(wrapper.findComponent(UserList).exists()).toBe(true);
   }); //PASSES
 
-  it('does not render UserDetails when no selectedUser', () => {
-    expect(wrapper.findComponent(UserDetails).exists()).toBe(false);
+  it('does not render UserDetailModal when no selectedUser', () => {
+    expect(wrapper.findComponent(UserDetailModal).exists()).toBe(false);
   }); //PASSES
 
-  it('renders UserDetails when there is a selectedUser', async () => {
+  it('renders UserDetailModal when there is a selectedUser', async () => {
     localStore.state.selectedUser = mockUsers[0];
     await wrapper.vm.$nextTick(); // Wait for re-render
-    expect(wrapper.findComponent(UserDetails).exists()).toBe(true);
+    expect(wrapper.findComponent(UserDetailModal).exists()).toBe(true);
   }); //PASSES
 
   it('computes selectedUser, search, and gender from store', () => {
@@ -109,10 +109,10 @@ describe('HomeView.vue', () => {
     expect(wrapper.vm.gender).toBe(localStore.state.gender);
   }); // PASSES
 
-  it('rerenders UserDetails when selectedUser changes', async () => {
+  it('rerenders UserDetailModal when selectedUser changes', async () => {
     localStore.state.selectedUser = mockUsers[0];
     await wrapper.vm.$nextTick();
-    expect(wrapper.findComponent(UserDetails).exists()).toBe(true);
+    expect(wrapper.findComponent(UserDetailModal).exists()).toBe(true);
   }); //PASSES
 
   // it('dispatches the correct actions with correct parameters', async () => {
@@ -148,8 +148,8 @@ describe('HomeView.vue', () => {
   
   //   console.log(wrapper.html()); // Print current state of the component
   
-  //   // Emit the close event on the UserDetails component
-  //   await wrapper.findComponent({ name: 'UserDetails' }).vm.$emit('close');
+  //   // Emit the close event on the UserDetailModal component
+  //   await wrapper.findComponent({ name: 'UserDetailModal' }).vm.$emit('close');
   
   //   await wrapper.vm.$nextTick(); // update after close
   

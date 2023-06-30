@@ -2,12 +2,12 @@ import { mount } from '@vue/test-utils';
 
 import { mockUsers } from '#/mocks';
 
-import UserDetails from '@/components/UserDetails.vue';
+import UserDetailModal from '@/components/UserDetailModal.vue';
 
-describe('UserDetails.vue', () => {
+describe('UserDetailModal.vue', () => {
   it('displays user details correctly', () => {
     const user = mockUsers[0];
-    const wrapper = mount(UserDetails, {
+    const wrapper = mount(UserDetailModal, {
       props: {
         user
       },
@@ -35,7 +35,7 @@ describe('UserDetails.vue', () => {
 
   it('emits close event when closeModal method is called', async () => {
     const user = mockUsers[0];
-    const wrapper = mount(UserDetails, {
+    const wrapper = mount(UserDetailModal, {
       props: {
         user
       }

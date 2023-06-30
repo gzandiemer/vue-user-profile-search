@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <div class="user-list" :style="userListStyle">
+      <!-- <div class="user-list"> -->
       <search-bar @update-search="updateSearch" @update-gender="updateGender" />
       <user-list
         @user-selected="showUserDetails"
@@ -9,7 +10,7 @@
       />
     </div>
     <div class="user-details-container">
-      <user-details
+      <user-detail-modal
         v-if="selectedUser"
         :user="selectedUser"
         @close="closeModal"
@@ -19,21 +20,21 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
-import { useStore } from "vuex";
+import { computed, defineComponent, onMounted } from 'vue';
+import { useStore } from 'vuex';
 
-import { User } from "@/types";
+import { User } from '@/types';
 
-import SearchBar from "@/components/SearchBar.vue";
-import UserDetails from "@/components/UserDetails.vue";
-import UserList from "@/components/UserList.vue";
+import SearchBar from '@/components/SearchBar.vue';
+import UserDetailModal from '@/components/UserDetailModal.vue';
+import UserList from '@/components/UserList.vue';
 
 export default defineComponent({
-  name: "HomeView",
+  name: 'HomeView',
   components: {
     SearchBar,
-    UserDetails,
-    UserList,
+    'user-detail-modal': UserDetailModal,
+    UserList
   },
   setup() {
     const store = useStore();
@@ -42,41 +43,41 @@ export default defineComponent({
     );
 
     const searchQuery = computed({
-      get: () => store.state.searchQuery || "",
-      set: (value) => store.commit("setSearchQuery", value),
+      get: () => store.state.searchQuery || '',
+      set: (value) => store.commit('setSearchQuery', value)
     });
 
     const gender = computed({
       get: () => store.state.gender,
-      set: (value) => store.commit("setGender", value),
+      set: (value) => store.commit('setGender', value)
     });
 
     const userListStyle = computed(() => {
       if (window.innerWidth >= 1280 && selectedUser.value) {
-        return { width: "40%" };
+        return { width: '40%' };
       } else {
-        return { width: "100%" };
+        return { width: '100%' };
       }
     });
 
     onMounted(async () => {
-      store.dispatch("fetchUsers");
+      store.dispatch('fetchUsers');
     });
 
     const updateSearch = (value: string) => {
-      store.commit("setSearchQuery", value);
+      store.commit('setSearchQuery', value);
     };
 
     const updateGender = (value: string) => {
-      store.commit("setGender", value);
+      store.commit('setGender', value);
     };
 
     const showUserDetails = (user: User) => {
-      store.commit("setSelectedUser", user);
+      store.commit('setSelectedUser', user);
     };
 
     const closeModal = () => {
-      store.commit("clearSelectedUser");
+      store.commit('clearSelectedUser');
     };
 
     return {
@@ -87,9 +88,9 @@ export default defineComponent({
       updateSearch,
       updateGender,
       showUserDetails,
-      closeModal,
+      closeModal
     };
-  },
+  }
 });
 </script>
 

@@ -6,7 +6,7 @@ import { createStore } from "vuex";
 import { State } from "@/store";
 import { mockUsers } from '#/mocks'; 
 
-import UserCard from "@/components/UserCard.vue";
+import UserSummaryCard from "@/components/UserSummaryCard.vue";
 
 import UserList from "@/components/UserList.vue";
 
@@ -78,21 +78,21 @@ describe('UserList.vue', () => {
         expect(mockFetchUsers).toHaveBeenCalled();
       });
     
-      it('renders a UserCard for each user in state', () => {
-        const userCards = wrapper.findAllComponents(UserCard);
-        expect(userCards.length).toBe(localStore.state.users.length);
+      it('renders a UserSummaryCard for each user in state', () => {
+        const UserSummaryCards = wrapper.findAllComponents(UserSummaryCard);
+        expect(UserSummaryCards.length).toBe(localStore.state.users.length);
       });
     
-      it('emits "user-selected" when a UserCard emits "user-selected"', async () => {
+      it('emits "user-selected" when a UserSummaryCard emits "user-selected"', async () => {
         await wrapper.vm.$nextTick();
-        const userCards = wrapper.findAllComponents(UserCard);
-        if(userCards.length > 0) {
+        const UserSummaryCards = wrapper.findAllComponents(UserSummaryCard);
+        if(UserSummaryCards.length > 0) {
           const selectedUser = localStore.state.users[0];
-          await userCards[0].vm.$emit('user-selected', selectedUser);
+          await UserSummaryCards[0].vm.$emit('user-selected', selectedUser);
           expect(wrapper.emitted('user-selected')).toBeTruthy();
           expect(wrapper.emitted('user-selected')?.[0]).toEqual([selectedUser]);
         } else {
-          throw new Error('No UserCard components found');
+          throw new Error('No UserSummaryCard components found');
         }
       });
 

@@ -1,6 +1,6 @@
 <template>
   <div class="user-list">
-    <user-card
+    <user-summary-card
       v-for="user in filteredUsers"
       :key="user.login.uuid"
       :user="user"
@@ -11,22 +11,22 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, ref } from "vue";
-import { useStore } from "vuex";
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
+import { useStore } from 'vuex';
 
-import { User } from "@/types";
+import { User } from '@/types';
 
-import UserCard from "@/components/UserCard.vue";
+import UserSummaryCard from '@/components/UserSummaryCard.vue';
 
 export default defineComponent({
-  name: "UserList",
-  components: { UserCard },
+  name: 'UserList',
+  components: { UserSummaryCard },
   setup(_, { emit }) {
     const store = useStore();
 
     const fetchUsers = async () => {
-       await store.dispatch("fetchUsers");
-     };
+      await store.dispatch('fetchUsers');
+    };
 
     const filteredUsers = computed(() => store.getters.filteredUsers);
 
@@ -41,30 +41,29 @@ export default defineComponent({
         document.documentElement.offsetHeight;
 
       if (bottomOfWindow) {
-        store.dispatch("fetchUsers");
+        store.dispatch('fetchUsers');
       }
     });
 
     onMounted(() => {
       // Add scroll event listener on component mount
-      window.addEventListener("scroll", onScroll.value);
+      window.addEventListener('scroll', onScroll.value);
       // Fetch initial users on component mount
-      store.dispatch("fetchUsers");
+      store.dispatch('fetchUsers');
     });
 
     onUnmounted(() => {
       // Remove scroll event listener before component unmount
-      window.removeEventListener("scroll", onScroll.value);
+      window.removeEventListener('scroll', onScroll.value);
     });
 
     const userSelected = (user: User) => {
-      emit("user-selected", user);
+      emit('user-selected', user);
     };
 
     return { fetchUsers, filteredUsers, userSelected };
-  },
+  }
 });
-
 </script>
 
 <style scoped>
