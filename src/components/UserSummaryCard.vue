@@ -51,7 +51,7 @@ export default defineComponent({
   max-width: 800px;
   margin: 2rem auto;
   cursor: pointer;
-  background-color: #f0f0f0; 
+  background: linear-gradient(to right, #f0f0f0, #ffffff);
   border: 1px solid #d0d0d0; 
   border-radius: 5px; 
   padding: 20px; 

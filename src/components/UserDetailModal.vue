@@ -89,47 +89,56 @@ export default defineComponent({
 
 <style scoped>
 .modal {
+  --primary-color: #f18a19;
+  --secondary-color: #f0f0f0;
+  --modal-padding: 20px;
+
   position: fixed;
-  z-index: 1;
-  right: 0;
+  z-index: 10;
+  right: 4px;
   top: 0;
   height: 100vh;
-  width: 60%;
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 56%;
+  border: 1px solid #d0d0d0; 
+  /* border-left: 1px solid var(--secondary-color); */
+  margin: auto;
+  background: linear-gradient(to right, #f0f0f0, #ffffff);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  transition: transform 0.3s ease-out;
+}
+
+.modal-enter-active {
+  /* Slide in from the right */
+  transform: translateX(100%);
+}
+
+.modal-leave-active {
+  /* Slide out to the right */
+  transform: translateX(-100%);
 }
 
 .modal-header {
   position: relative;
-  z-index: 10;
+  z-index: 16;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fefefe;
-  padding: 20px;
-  border-bottom: 1px solid #888;
+  padding: var(--modal-padding);
+  /* border-bottom: 1px solid var(--secondary-color); */
   width: 100%;
 }
 
-.modal-content {
-  position: absolute;
-  background-color: #fefefe;
-  padding: 20px;
-  width: 100%;
-  height: calc(100vh - 70px);
-  overflow: auto;
-  top: 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+h2 {
+  color: #424242;
 }
 
 .close-button {
   position: relative;
   right: 8%;
   z-index: 15;
-  color: #f18a19;
+  color: var(--primary-color);
   font-size: 2em;
   font-weight: bold;
   cursor: pointer;
@@ -142,18 +151,33 @@ export default defineComponent({
   cursor: pointer;
 }
 
+.modal-content {
+  position: absolute;
+  z-index: 15;
+  background-color: #fefefe;
+  padding: var(--modal-padding);
+  width: 100%;
+  height: calc(100vh - 7rem);
+  top: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .modal-user-info {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .user-picture {
   border-radius: 50%;
-  border: 1px solid #f18a19;
-  width: 200px;
-  height: 200px;
+  border: 1px solid var(--primary-color);
+  width: 20rem;
+  height: 20rem;
   object-fit: cover;
   margin-right: 2rem;
 }
@@ -163,77 +187,94 @@ export default defineComponent({
 }
 
 .user-name {
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
 }
-
 .user-details-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #888;
-  padding: 2rem 20px;
-}
-.user-detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-}
-
-.user-location,
-.user-contact {
-  width: 45%;
-  position: relative;
-}
-
-.icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 1.4rem;
-  color: #f18a19;
-  margin-bottom: 1rem;
+  justify-content: center;
+  /* border-top: 1px solid var(--secondary-color); */
+  padding: 2rem var(--modal-padding);
+  margin: 0 6rem 0 4rem;
 }
 
 @media screen and (max-width: 1280px) {
   .modal {
     width: 100%;
+    font-size: 1rem;
+    margin: 0 auto;
   }
 
-  .user-name {
-    font-size: 1em;
-    margin-top: 2rem;
+  .modal-header {
+    padding: 0.5rem; 
   }
 
+  .close-button {
+    font-size: 1.5em;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-content {
+    padding: 0.1rem;
+    height: calc(100vh - 3rem);
+    top: 3rem;
+    border: none;
+  }
+
+  .user-picture {
+    width: 12rem;
+    height: 12rem;
+    margin: 2rem 0 0 0;
+  }
   .user-id {
     font-size: 1rem;
     margin-left: 0.5rem;
   }
 
-  .user-picture {
-    width: 120px;
-    height: 120px;
-    margin: 2rem 0 0 0;
-  }
-
-  .modal-content {
-    padding: 10px;
+  .user-name {
+    font-size: 1.4rem;
+    margin-top: 2rem;
   }
 
   .user-details-container {
+    border: none;
     flex-direction: column;
+    width: 60%;
+    margin: 0 3rem 0 0.5rem;
+    padding: 0.1rem;
   }
 
-  .user-detail {
-    width: 100%;
-    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    font-size: 0.6rem;
   }
 
   .close-button {
     font-size: 1.5em;
-    margin-right: 1rem;
-    margin-bottom: 0.5rem;
   }
+
+  .user-picture {
+    width: 5rem;
+    height: 5rem;
+  }
+  .user-id {
+    font-size: 0.4rem;
+  }
+
+  .user-name {
+    font-size: 0.6rem;
+  }
+
+  .user-details-container {
+    border: none;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 3rem 0 0.5rem;
+    padding: 0.1rem;
+  }
+
 }
 </style>

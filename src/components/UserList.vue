@@ -74,7 +74,7 @@ export default defineComponent({
 
 .more-results-button {
   display: block;
-  width: 25%;
+  width: 20%;
   padding: 1rem;
   margin: 2rem auto;
   color: #fff;

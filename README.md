@@ -32,13 +32,13 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### TO DO:  
-# fix overflow problem
 
- # move select button below search bar on mobiles
+# update snapshots and unit tests!!!!
 
+# fix screen size change bug
+# convert px to percentage or rems
 
-# more styling of the card? and buttons? a d user cards?
-# update snapshots and unit tests
+# click handler for the select menu
 
 # format. refactor and comment on the main files
 
