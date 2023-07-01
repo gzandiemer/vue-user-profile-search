@@ -63,7 +63,7 @@ export default defineComponent({
 }
 
 .user-card:hover {
-  transform: scale(1.02);  /* Added hover effect */
+  transform: scale(1.02);  
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 

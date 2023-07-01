@@ -2,15 +2,15 @@ import { mount } from '@vue/test-utils';
 
 import { cloneDeep } from 'lodash';
 import { createStore } from 'vuex';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import { State } from '@/store';
 
 import SearchBar from '@/components/SearchBar.vue';
 
-library.add(faSearch)
+library.add(faSearch);
 
 interface MyStoreOptions {
   state: State;
@@ -68,18 +68,11 @@ describe('SearchBar.vue', () => {
     localStore = createStore(cloneDeep(localStoreConfig));
   });
 
-  // const mockFontAwesome = {
-  //   install(app: any) {
-  //     app.component('font-awesome-icon', {
-  //       template: '<div class="fa-icon"></div>'
-  //     });
-  //   },
-  // };
-
   beforeEach(() => {
-    wrapper = mount(SearchBar, { global: { plugins: [localStore, FontAwesomeIcon] } });
+    wrapper = mount(SearchBar, {
+      global: { plugins: [localStore, FontAwesomeIcon] }
+    });
   });
-
 
   it('should render correctly', () => {
     expect(wrapper.html()).toMatchSnapshot();
@@ -93,20 +86,21 @@ describe('SearchBar.vue', () => {
     expect(mutations.setSearchQuery).toHaveBeenCalled();
     expect(wrapper.emitted('update-search')).toBeTruthy();
     expect(wrapper.emitted('update-search')?.[0]).toEqual(['test search']);
-  }); //PASSES
+  }); 
 
   it('emits "update-gender" event and updates store on select', async () => {
-  const dropdown = wrapper.find('.search-bar__select');
-  await dropdown.trigger('click'); // opens the dropdown
+    const dropdown = wrapper.find('.search-bar__select');
+    // Open the dropdown
+    await dropdown.trigger('click');
+    // Wait for the dropdown to open
+    await wrapper.vm.$nextTick(); 
 
-  await wrapper.vm.$nextTick(); // wait for the dropdown to open
+    const option = wrapper
+      .findAll('.option')
+      .filter((w: { text: () => string }) => w.text() === 'Male')[0];
+    await option.trigger('click'); // selects the "Male" option
 
-  const option = wrapper.findAll('.option').filter((w: { text: () => string; }) => w.text() === 'Male')[0];
-  await option.trigger('click'); // selects the "Male" option
-
-  // Check the mutation
-  expect(mutations.setGender).toHaveBeenCalled();
-});
-
-  
+    // Check the mutation
+    expect(mutations.setGender).toHaveBeenCalled();
+  });
 });

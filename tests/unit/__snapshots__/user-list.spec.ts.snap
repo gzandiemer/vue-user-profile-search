@@ -13,6 +13,6 @@ exports[`UserList.vue should render correctly 1`] = `
       <h2>Jane Doe</h2>
       <p>john.doe@example.com</p>
     </div>
-  </div><button> More results... </button>
+  </div><button class="more-results-button">More results...</button>
 </div>
 `;

@@ -177,7 +177,13 @@
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -291,128 +297,140 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
   &lt;div class="app-container"&gt;
     &lt;div class="user-list" :style="userListStyle"&gt;
-    &lt;search-bar
-      @update-search="updateSearch"
-      @upda<span class="fstat-no" title="function not covered" >te-gen</span>der="updateGender"
-<span class="cstat-no" title="statement not covered" >    /&gt;<span class="fstat-no" title="function not covered" ></span></span>
-    &lt;u<span class="cstat-no" title="statement not covered" >ser-list </span>
-      @user-selected="showUserDetails"
-      :search="searchQuery"
-      :gender="gender"
-    /&gt;<span class="fstat-no" title="function not covered" ></span>
-    &lt;/<span class="cstat-no" title="statement not covered" >div&gt;</span>
-    &lt;div<span class="cstat-no" title="statement not covered" > class="user-details-containe</span>r"&gt;
-      &lt;user-details v-if="selectedUser" :user="selectedUser" @close="closeModal"/&gt;
-    &lt;/di<span class="cstat-no" title="statement not covered" >v&gt;</span>
-  &lt;/div&gt;
-&lt;/template&gt;
-<span class="fstat-no" title="function not covered" ></span>
-&lt;scrip<span class="cstat-no" title="statement not covered" >t lang="ts"&gt;</span>
-import {<span class="cstat-no" title="statement not covered" > defineComponent, computed, onMou</span>nted } from 'vue';
+      &lt;!-- &lt;div class="user-list"&gt; --&gt;
+      &lt;search-bar class="search-bar" @update-search="updateSearch" @update-gender="updateGender" /&gt;
+      &lt;user<span class="fstat-no" title="function not covered" >-list</span>
+<span class="cstat-no" title="statement not covered" >        @user-selected="showUserDetails"<span class="fstat-no" title="function not covered" ></span></span>
+<span class="cstat-no" title="statement not covered" >        :search="searc</span>hQuery"
+        :gender="gender"
+      /&gt;
+    &lt;/div&gt;
+    &lt;div clas<span class="fstat-no" title="function not covered" >s="user-de</span>tails-container"&gt;
+<span class="cstat-no" title="statement not covered" >      &lt;user-detail-modal</span>
+<span class="cstat-no" title="statement not covered" >        v-if="selectedUser"</span>
+        :user="selectedUser"
+<span class="cstat-no" title="statement not covered" >        @close="clo</span>seModal"
+      /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;<span class="fstat-no" title="function not covered" ></span>
+&lt;/temp<span class="cstat-no" title="statement not covered" >late&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+&lt;script lang="ts"&gt;
+import {<span class="cstat-no" title="statement not covered" > computed, </span>defineComponent, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import S<span class="cstat-no" title="statement not covered" >earchBar fr</span>om '../components/SearchBar.vue';
-import UserDetails from '../components/UserDetails.vue';
-import UserList from '../components/UserList.vue';
-import { User } from '../types';
+&nbsp;
+import { User } from '@/types';
 <span class="branch-1 cbranch-no" title="branch not covered" ></span>
+import SearchBar from '@/components/SearchBar.vue';
+import UserDetailModal from '@/components/UserDetailModal.vue';
+import UserList from '@/components/UserList.vue';
+&nbsp;
 export default defineComponent({
   name: 'HomeView',
   components: {
-    SearchBar, 
-    UserDetails,
-    UserList
+    SearchBa<span class="fstat-no" title="function not covered" >r,</span>
+    'use<span class="cstat-no" title="statement not covered" >r-detail-modal<span class="cstat-no" title="statement not covered" >': UserDetai</span></span>lModal,
+    User<span class="cstat-no" title="statement not covered" >List</span>
   },
-  setup() {<span class="fstat-no" title="function not covered" ></span>
-    cons<span class="cstat-no" title="statement not covered" >t store = useS<span class="cstat-no" title="statement not covered" >tore();</span></span>
-    // c<span class="cstat-no" title="statement not covered" >onst selected</span>User = computed(() =&gt; store.state.selectedUser as User | null);
-    const selectedUser = computed(() =&gt; store.state.selectedUser);
-&nbsp;
-    // const search = computed({
-    //   get: () =&gt; store.state.searchQuery,
-    //   set: (value) =&gt; store.commit('setSearchQuery', value)
-    // });
-    // const gender = computed(() =&gt; store.state.gender);
+  setup() {
+    const store = useStore();
+    const selectedUser = computed(
+      () =&gt; store.state.selectedUser as User | null
+    );
 &nbsp;
     const searchQuery = computed({
       get: () =&gt; store.state.searchQuery || '',
       set: (value) =&gt; store.commit('setSearchQuery', value)
     });
-<span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-    const gender = computed({
-      get: () =&gt; store.state.gender,
-      set: (value) =&gt; store.commit('setGender', value)
-  });
 &nbsp;
+    const gender = computed({<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      get: () =&gt; </span>store.state.gender,
+      set: (value) =&gt; store.commit('setGender', value)
+    });
+&nbsp;
+    const userListStyle = computed(() =&gt; {
+      if (window.innerWidth &gt;= 1280 &amp;&amp; selectedUser.value) {
+        return { width: '40%' };
+      } else {
+    <span class="missing-if-branch" title="if path not taken" >I</span>    ret<span class="cstat-no" title="statement not covered" >urn { width: '100%' };</span>
+      }
+    })<span class="missing-if-branch" title="if path not taken" >I</span>;<span class="cstat-no" title="statement not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span></span>
     onMounted(async () =&gt; {
       store.dispatch('fetchUsers');
-    <span class="missing-if-branch" title="if path not taken" >I</span>});<span class="cstat-no" title="statement not covered" ></span>
-&nbsp;
-    co<span class="missing-if-branch" title="if path not taken" >I</span>nst showUserDetai<span class="branch-1 cbranch-no" title="branch not covered" >ls = (user: User) =&gt; {<span class="cstat-no" title="statement not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span>
-      <span class="missing-if-branch" title="if path not taken" >I</span>store.commit('<span class="cstat-no" title="statement not covered" >setSelectedUser', user);</span>
-    };
+    });
 &nbsp;
     const updateSearch = (value: string) =&gt; {
-      store.commit('setSearchQuery', value);
-    };
-<span class="branch-2 cbranch-no" title="branch not covered" ></span>
-    const <span class="cstat-no" title="statement not covered" >updateGende</span>r = (value: string) =&gt; {
-      stor<span class="cstat-no" title="statement not covered" >e.commit('setGender', value);</span>
-    };
-&nbsp;
-    const closeModal = () =&gt; {
-      st<span class="branch-3 cbranch-no" title="branch not covered" >ore.commit('clearSelectedUser');</span>
+      st<span class="branch-2 cbranch-no" title="branch not covered" >ore.commit('setSearchQuery', value);</span>
     };<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" ></span>
-    const <span class="cstat-no" title="statement not covered" >userListSt</span>yle = computed(() =&gt; {
-      if (<span class="cstat-no" title="statement not covered" >window.inn</span>erWidth &gt;= 1280 &amp;&amp; selectedUser.value) {
-<span class="branch-4 cbranch-no" title="branch not covered" >        return { width: '40%' };</span>
-      } el<span class="cstat-no" title="statement not covered" >se {</span>
-        re<span class="cstat-no" title="statement not covered" >turn { width: </span>'100%' };
-      }<span class="cstat-no" title="statement not covered" ></span>
-    });
-<span class="branch-1 cbranch-no" title="branch not covered" ><span class="missing-if-branch" title="else path not taken" >E</span></span>
+    const updateGender = (value: string) =&gt; {
+      store.commit('setGender', value);
+    };
+<span class="branch-3 cbranch-no" title="branch not covered" ></span>
+    const <span class="cstat-no" title="statement not covered" >showUserDet</span>ails = (user: User) =&gt; {
+      stor<span class="cstat-no" title="statement not covered" >e.commit('s</span>etSelectedUser', user);
+    };<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+    cons<span class="branch-4 cbranch-no" title="branch not covered" >t closeModal = () =&gt; {</span>
+      stor<span class="cstat-no" title="statement not covered" >e.commit('clearSel</span>ectedUser');
+    };<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
     return {
-      selectedUser,
+      sele<span class="missing-if-branch" title="else path not taken" >E</span>ctedUser,<span class="branch-1 cbranch-no" title="branch not covered" ></span>
       searchQuery,
-      gend<span class="cstat-no" title="statement not covered" >er,</span>
-      update<span class="cstat-no" title="statement not covered" >Search,</span>
+      gender,
+      userListStyle,
+      upda<span class="cstat-no" title="statement not covered" >teSearch,</span>
       update<span class="cstat-no" title="statement not covered" >Gender,</span>
-      showUserDetails,
-      clos<span class="cstat-no" title="statement not covered" >eModal,</span>
-      userLi<span class="cstat-no" title="statement not covered" >stStyle</span>
+      showUs<span class="cstat-no" title="statement not covered" >erDetai</span>ls,
+      closeModal
     };<span class="cstat-no" title="statement not covered" ></span>
   }<span class="cstat-no" title="statement not covered" ></span>
-});
+});<span class="cstat-no" title="statement not covered" ></span>
 &lt;/script&gt;<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+&lt;style sco<span class="cstat-no" title="statement not covered" >ped&gt;</span>
+.app-contain<span class="cstat-no" title="statement not covered" >er {</span>
+  display: f<span class="cstat-no" title="statement not covered" >lex;</span>
+  height: 10<span class="cstat-no" title="statement not covered" >0vh;</span>
+  width: 100%;
+}<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
 <span class="cstat-no" title="statement not covered" ></span>
-&lt;style scope<span class="cstat-no" title="statement not covered" >d&gt;</span>
- .app-contai<span class="cstat-no" title="statement not covered" >ner {</span>
+.user-list<span class="cstat-no" title="statement not covered" > {</span>
+  overflow-y: auto;
+  height: 100vh;
   display: flex;
-  height: <span class="cstat-no" title="statement not covered" >100vh;<span class="cstat-no" title="statement not covered" ></span></span>
-  width: 1<span class="cstat-no" title="statement not covered" >00%;</span>
-}<span class="cstat-no" title="statement not covered" ></span>
+  flex<span class="cstat-no" title="statement not covered" >-direction: c</span>olumn;
+  alig<span class="cstat-no" title="statement not covered" >n-items</span>: center;
+}
 &nbsp;
-.user-list { 
-  overflow-y: auto; 
-  heig<span class="cstat-no" title="statement not covered" >ht: 100vh;</span>
-}<span class="cstat-no" title="statement not covered" ></span>
+/* .search-bar {
+  ma<span class="missing-if-branch" title="if path not taken" >I</span>x-width: 600px; <span class="cstat-no" title="statement not covered" ></span>
+  margin: 0 auto;
+} */<span class="branch-1 cbranch-no" title="branch not covered" ></span>
 &nbsp;
- .user-details-container {
+.user-details-container {
   overflow: hidden;
-} <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span></span>
-&nbsp;
-&lt;/style&gt;<span class="branch-1 cbranch-no" title="branch not covered" ></span></pre></td></tr></table></pre>
+}
+&lt;/style&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" ></span></pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-29T21:06:31.021Z
+                at 2023-07-01T08:48:27.109Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -2,8 +2,10 @@
 
 exports[`SearchBar.vue should render correctly 1`] = `
 <div class="search-bar">
-  <div class="search-bar__input-container"><input class="search-bar__input" type="text" placeholder="Search by name...">
-    <font-awesome-icon icon="fas,search" class="search-icon"></font-awesome-icon>
+  <div class="search-bar__input-container">
+    <div class="search-icon">
+      <font-awesome-icon icon="fas,search"></font-awesome-icon>
+    </div><input class="search-bar__input" type="text" placeholder="Search by name...">
   </div>
   <div class="search-bar__select">
     <div class="selected-option">All <span class="arrow-down">▾</span><span class="arrow-up" style="display: none;">▴</span></div>

@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { createStore } from "vuex";
 
 import { State } from "@/store";
-import { mockUsers } from '#/mocks';
+import { mockUsers } from '#/--mocks--/mock-users';
 
 import UserSummaryCard from "@/components/UserSummaryCard.vue";
 
@@ -59,33 +59,22 @@ describe('UserSummaryCard.vue', () => {
     });
   });
 
-  // it('should render correctly', () => {
-  //   const user = mockUsers[0]; // Get the first user from mockUsers
-  //   expect(wrapper.html()).toMatchSnapshot({
-  //     user: {
-  //       name: {
-  //         first: user.name.first,
-  //         last: user.name.last,
-  //       },
-  //       email: user.email,
-  //       picture: {
-  //         thumbnail: user.picture.thumbnail,
-  //       },
-  //     },
-  //   });
-  // });
+  it('should render correctly', () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+  
   
   it('displays the user name and email', () => {
     const userInfo = wrapper.find('.user-info');
     expect(userInfo.text()).toContain(mockUsers[0].name.first);
     expect(userInfo.text()).toContain(mockUsers[0].name.last);
     expect(userInfo.text()).toContain(mockUsers[0].email);
-  }); //PASSES
+  }); 
 
   it('emits "user-selected" event when user card is clicked', async () => {
     await wrapper.find('.user-card').trigger('click');
     expect(wrapper.emitted('user-selected')).toBeTruthy();
     expect(wrapper.emitted('user-selected')?.[0]).toEqual([mockUsers[0]]);
-  }); //PASSES
+  }); 
 });
 

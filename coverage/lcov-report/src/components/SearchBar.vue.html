@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.7% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>55/62</span>
+                <span class='fraction'>56/63</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.52% </span>
+                <span class="strong">88.7% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/61</span>
+                <span class='fraction'>55/62</span>
             </div>
         
             
@@ -318,7 +318,19 @@
 <a name='L253'></a><a href='#L253'>253</a>
 <a name='L254'></a><a href='#L254'>254</a>
 <a name='L255'></a><a href='#L255'>255</a>
-<a name='L256'></a><a href='#L256'>256</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -418,6 +430,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -435,6 +448,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -446,10 +462,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -573,9 +585,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
   &lt;div class="search-bar"&gt;
     &lt;div class="search-bar__input-container"&gt;
+      &lt;div class="search-icon"&gt;
+        &lt;font-awesome-icon :icon="['fas', 'search']"&gt;&lt;/font-awesome-icon&gt;
+      &lt;/div&gt;
       &lt;input
         class="search-bar__input"
         v-model="search"
@@ -583,69 +610,64 @@
         placeholder="Search by name..."
         @input="updateSearch"
       /&gt;
-      &lt;font-awesome-icon
-        :icon="['fas', 'search']"
-        class="search-icon"
-      &gt;&lt;/font-awesome-icon&gt;
     &lt;/div&gt;
-&nbsp;
-    &lt;div class="search-bar__select" @click="open = !open"&gt;
-      &lt;div class="selected-option"&gt;
-        {{ selectedOptionText }}
-        &lt;span class="arrow-down" v-show="!open"&gt;&amp;#9662;&lt;/span&gt;
-        &lt;span class="arrow-up" v-show="open"&gt;&amp;#9652;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class="options" v-show="open"&gt;
-        &lt;div
-          class="option"
-          v-for="option in options"
-          :key="option.value"
-          @click.stop="selectOption(option.value)"
-        &gt;
-          {{ option.text }}
+      &lt;div class="search-bar__select" @click="open = !open"&gt;
+        &lt;div class="selected-option"&gt;
+          {{ selectedOptionText }}
+          &lt;span class="arrow-down" v-show="!open"&gt;&amp;#9662;&lt;/span&gt;
+          &lt;span class="arrow-up" v-show="open"&gt;&amp;#9652;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="options" v-show="open"&gt;
+          &lt;div
+            class="option"
+            v-for="option in options"
+            :key="option.value"
+            @click.stop="selectOption(option.value)"
+          &gt;
+            {{ option.text }}
+          &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
-&lt;script lan<span class="fstat-no" title="function not covered" >g=</span>"ts"&gt;
-import {<span class="cstat-no" title="statement not covered" > defineComponent, ref, computed } </span>from "vue";
-import {<span class="cstat-no" title="statement not covered" > useStore } from "vuex";</span>
-&nbsp;
-export default defineComponent({
-  emits: ["update-search", "update-gender"],
+&lt;script lang="ts"&gt;
+import { defineComponent, ref, computed } from 'vue';
+import { us<span class="fstat-no" title="function not covered" >eS</span>tore } from 'vuex';
+<span class="cstat-no" title="statement not covered" ></span>
+export d<span class="cstat-no" title="statement not covered" >efault defineComponent({</span>
+  emits: ['update-search', 'update-gender'],
   setup(_, { emit }) {
     const store = useStore();
-    const open = ref&lt;bo<span class="fstat-no" title="function not covered" >ol</span>ean&gt;(false);
-    co<span class="cstat-no" title="statement not covered" >nst options = ref&lt;Array&lt;{ text: strin</span>g; value: string }&gt;&gt;([
-      { text: "All", value: "" },
-      { text: "Male", value: "male" },
-      { text: "Female", value: "female" },
+    const open = ref&lt;boolean&gt;(false);
+    const options = ref&lt;Array&lt;{ text: string; value: string }&gt;&gt;([
+      { text: 'All', va<span class="fstat-no" title="function not covered" >lu</span>e: '' },
+<span class="cstat-no" title="statement not covered" >      { text: 'Male', value: 'male' },</span>
+      { text: 'Female', value: 'female' }
     ]);
 &nbsp;
-    const search = computed({<span class="branch-0 cbranch-no" title="branch not covered" ></span>
+    const search = computed({
       get: () =&gt; store.state.searchQuery,
-      set: (value) =&gt; {
-        store.commit("setSearchQuery", value);
-        emit("update-search", value);
-      },
+      set: (value) =&gt; {<span class="branch-0 cbranch-no" title="branch not covered" ></span>
+        store.commit('setSearchQuery', value);
+        emit('update-search', value);
+      }
     });
 &nbsp;
     const gender = computed({
       get: () =&gt; store.state.gender,
-      set: (value) =&gt; {<span class="branch-1 cbranch-no" title="branch not covered" ></span>
-        store.commit("setGender", value);
-        emit("update-gender", value);
-      },
+      set: (value) =&gt; {
+        store.commit('setGender', value);
+        emit('update-gender', value)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+      }
     });
 &nbsp;
     const updateSearch = () =&gt; {
-      emit("update-search", search.value);
+      emit('update-search', search.value);
     };
 &nbsp;
     const updateGender = () =&gt; {
-      emit("update-gender", gender.value);
+      emit('update-gender', gender.value);
     };
 &nbsp;
     const selectOption = (value: string) =&gt; {
@@ -653,92 +675,102 @@ export default defineComponent({
         (option) =&gt; option.value === value
       )?.text;
       console.log(`Option ${value} selected. Option text: ${optionText}`);
-      store.commit("setGender", value);
-      emit("update-g<span class="fstat-no" title="function not covered" >en</span>der", value);
-<span class="cstat-no" title="statement not covered" >      open.value = false;</span>
-    };
-<span class="fstat-no" title="function not covered" ></span>
-    co<span class="cstat-no" title="statement not covered" >nst selectedOptionText = computed(() =&gt; {</span>
-      const option = options.value.find((opt) =&gt; opt.value === gender.value);
-      return option ? option.text : "";
+      store.commit('setGender', value);
+      emit('update-gender', value);
+      open.value = false;
+    };<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+    const selectedOptionText = computed(() =&gt; {
+      const option = o<span class="fstat-no" title="function not covered" >pt</span>ions.value.find((opt) =&gt; opt.value === gender.value);
+<span class="cstat-no" title="statement not covered" >      return option ? option.text : '';</span>
     });
 &nbsp;
     return {
-      search,<span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      gender,</span>
-      open,
-      options,
-      selectOption,<span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      selectedOptionText,</span>
-      updateSearch,
-      updateGender,
+      search,
+      gender,
+      open,<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      options,</span>
+      selectOption,
+      selectedOptionText,
+      updateSearch,<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      updateGender</span>
     };
   },
   data() {
     return {
-      isSmallScreen: window.innerWidth &lt;= 600, // You can adjust the value as needed
+      isSmallScreen: window.innerWidth &lt;= 600 // You can adjust the value as needed
     };
   },
   computed: {
     maleOptionText() {
-      return this.isSmallScreen ? "M" : "Male";
+      return this.isSmallScreen ? 'M' : 'Male';
     },
     femaleOptionText() {
-      return this.isSmallScreen ? "F" : "Female";
-    },
+      return this.isSmallScreen ? 'F' : 'Female';
+    }
   },
   created() {
-    window.addEventListener("resize", this.updateScreenWidth);
+    window.addEventListener('resize', this.updateScreenWidth);
   },
   unmounted() {
-    window.removeEventListener("resize", this.updateScreenWidth);
+    window.removeEventListener('resize', this.updateScreenWidth);
   },
   methods: {
     updateScreenWidth() {
       this.isSmallScreen = window.innerWidth &lt;= 600;
-    },
-  },
+    }
+  }
 });
 &lt;/script&gt;
 &nbsp;
 &lt;style scoped&gt;
 .search-bar__input-container {
   position: relative;
-  width: 80%;
-  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 50px;
+  box-sizing: border-box;
+  margin-top: 8%;
+  margin-left: 5%;
 }
+&nbsp;
 .search-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.search-icon {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: #f18a19;
+  pointer-events: none;
 }
 &nbsp;
 .search-bar__input {
-  width: 70%;
-  padding: 1rem;
+  width: 100%;
+  padding: 1.1rem;
   border: none;
   border-radius: 50px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   padding-left: 4rem;
   background-size: 3rem;
 }
-&nbsp;
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 14%;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
-  color: #f18a19;
-}
-&nbsp;
 .search-bar__select {
-  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8%;
   margin-right: 8%;
-  width: 15%;
-  padding: 1rem;
+  width: 25%;
+  height: 50px;
+  box-sizing: border-box;
   border: none;
   border-radius: 50px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -751,7 +783,7 @@ export default defineComponent({
 &nbsp;
 .selected-option {
   text-align: center;
-  padding-right: 1rem; /* space for the arrow */
+  padding-right: 1.5rem; /* space for the arrow */
   position: relative;
 }
 &nbsp;
@@ -765,7 +797,7 @@ export default defineComponent({
 &nbsp;
 .options {
   position: absolute;
-  width: 16%;
+  width: 12%;
   background-color: #f8f9fa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
@@ -801,14 +833,20 @@ export default defineComponent({
 &nbsp;
 @media screen and (max-width: 600px) {
   .search-bar__input-container {
-    margin-top: 4%;
+    margin: 1rem auto;
+    width: 100%;
+    font-size: 1rem;
   }
   .search-bar {
-    margin-left: 1%;
-    width: 90%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
   .search-bar__input {
-    padding-left: 3rem;
+    padding-left: 4rem;
+    margin: 0 auto;
+    width: 90%;
   }
 &nbsp;
   .search-icon {
@@ -817,17 +855,15 @@ export default defineComponent({
   }
 &nbsp;
   .search-bar__select {
-    width: 30%;
-    padding: 0.5rem;
-    margin-left: 3%;
+    width: 50%;
+    margin: 0.5rem auto;
+    justify-content: center;
   }
-&nbsp;
   .options {
-    width: 30%;
+    width: 50%;
   }
 }
 &lt;/style&gt;
-&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -835,7 +871,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-29T21:06:31.021Z
+                at 2023-07-01T08:48:27.109Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

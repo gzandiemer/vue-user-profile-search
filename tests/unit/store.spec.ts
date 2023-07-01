@@ -3,7 +3,7 @@ import createPersistedState from 'vuex-persistedstate';
 
 import { State } from '@/store';
 import { User } from '@/types';
-import { mockUsers } from '#/mocks';
+import { mockUsers } from '#/--mocks--/mock-users';
 
 declare const global: any;
 
@@ -12,9 +12,11 @@ describe('Vuex Store', () => {
 
   beforeEach(() => {
     store = createStore({
-      plugins: [createPersistedState({
-        paths: ['users', 'selectedUser', 'filter', 'page', 'gender']
-      })],
+      plugins: [
+        createPersistedState({
+          paths: ['users', 'selectedUser', 'filter', 'page', 'gender']
+        })
+      ],
       state: {
         users: [],
         selectedUser: null,
@@ -42,14 +44,16 @@ describe('Vuex Store', () => {
         setGender(state: State, gender: string) {
           state.gender = gender;
         },
-        incrementPage(state: State){
-          state.page +=1;
+        incrementPage(state: State) {
+          state.page += 1;
           localStorage.setItem('page', JSON.stringify(state.page));
         }
       },
       actions: {
         async fetchUsers({ commit, state }) {
-          const response = await fetch(`https://randomuser.me/api/?inc=gender,name,location,email,login,phone,picture&page=${state.page}&results=25`);
+          const response = await fetch(
+            `https://randomuser.me/api/?inc=gender,name,location,email,login,phone,picture&page=${state.page}&results=25`
+          );
           const data = await response.json();
           commit('setUsers', [...state.users, ...data.results]);
           commit('incrementPage');
@@ -76,13 +80,10 @@ describe('Vuex Store', () => {
     expect(store.state.selectedUser).toEqual(mockUser);
   });
 
-  // Add similar tests for other mutations
-
-  // Testing actions usually involves mocking dependencies like APIs and are more complex.
   test('fetchUsers action should fetch users', async () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
-        json: () => Promise.resolve({ results: [mockUser, mockUser] }),
+        json: () => Promise.resolve({ results: [mockUser, mockUser] })
       })
     );
 
@@ -91,7 +92,6 @@ describe('Vuex Store', () => {
     expect(store.state.users.length).toBeGreaterThan(0);
   });
 
-  // Testing getters
   test('getUser getter should return user with given id', () => {
     const users: User[] = [mockUser];
     store.commit('setUsers', users);

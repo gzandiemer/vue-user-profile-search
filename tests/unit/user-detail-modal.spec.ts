@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 
-import { mockUsers } from '#/mocks';
+import { mockUsers } from '#/--mocks--/mock-users';
 
 import UserDetailModal from '@/components/UserDetailModal.vue';
 
@@ -13,12 +13,11 @@ describe('UserDetailModal.vue', () => {
       },
       global: {
         stubs: {
-          'font-awesome-icon': true 
+          'font-awesome-icon': true
         }
       }
     });
 
-    // Checks for user details
     expect(wrapper.find('img').attributes('src')).toBe(user.picture.large);
     expect(wrapper.text()).toContain(user.name.first);
     expect(wrapper.text()).toContain(user.name.last);
