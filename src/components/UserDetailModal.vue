@@ -99,8 +99,6 @@ export default defineComponent({
   top: 0;
   height: 100vh;
   width: 56%;
-  border: 1px solid #d0d0d0; 
-  /* border-left: 1px solid var(--secondary-color); */
   margin: auto;
   background: linear-gradient(to right, #f0f0f0, #ffffff);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -126,7 +124,6 @@ export default defineComponent({
   align-items: center;
   background-color: #fefefe;
   padding: var(--modal-padding);
-  /* border-bottom: 1px solid var(--secondary-color); */
   width: 100%;
 }
 
@@ -194,7 +191,6 @@ h2 {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border-top: 1px solid var(--secondary-color); */
   padding: 2rem var(--modal-padding);
   margin: 0 6rem 0 4rem;
 }
@@ -257,15 +253,15 @@ h2 {
   }
 
   .user-picture {
-    width: 5rem;
-    height: 5rem;
+    width: 9rem;
+    height: 9rem;
   }
   .user-id {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
   }
 
   .user-name {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
 
   .user-details-container {
@@ -276,5 +272,26 @@ h2 {
     padding: 0.1rem;
   }
 
+}
+
+/* Adjustment for google nest hub screens */
+@media screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
+
+  .modal-header {
+    font-size: 0.8rem;
+  }
+  .modal-content {
+  z-index: 20;
+}
+
+.user-picture {
+    width: 6rem;
+    height: 6rem;
+   
+}
+
+.user-details-container {
+    font-size: 0.8rem;
+  }
 }
 </style>

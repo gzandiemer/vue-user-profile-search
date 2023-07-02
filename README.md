@@ -33,16 +33,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### TO DO:  
 
-# update snapshots and unit tests!!!!
-
-# fix screen size change bug
-# convert px to percentage or rems
-
-# click handler for the select menu
-
+# add a set of standard margins and padding and colors
 # format. refactor and comment on the main files
-
 # deploy
+
+
 
 
 

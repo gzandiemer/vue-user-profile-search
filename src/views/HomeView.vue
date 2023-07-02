@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue';
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
 import { useStore } from 'vuex';
 
 import { User } from '@/types';
@@ -52,16 +52,27 @@ export default defineComponent({
       set: (value) => store.commit('setGender', value)
     });
 
+    const windowWidth = ref(window.innerWidth);
+
+    const updateWindowWidth = () => {
+      windowWidth.value = window.innerWidth;
+    };
+
+    onMounted(() => {
+      window.addEventListener('resize', updateWindowWidth);
+      store.dispatch('fetchUsers');
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', updateWindowWidth);
+    });
+
     const userListStyle = computed(() => {
-      if (window.innerWidth >= 1280 && selectedUser.value) {
+      if (windowWidth.value >= 1280 && selectedUser.value) {
         return { width: '40%' };
       } else {
         return { width: '100%' };
       }
-    });
-
-    onMounted(async () => {
-      store.dispatch('fetchUsers');
     });
 
     const updateSearch = (value: string) => {

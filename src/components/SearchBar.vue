@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 
 export default defineComponent({
@@ -86,6 +86,21 @@ export default defineComponent({
       return option ? option.text : '';
     });
 
+    const closeDropdown = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.search-bar__select')) {
+        open.value = false;
+      }
+    };
+
+    onMounted(() => {
+      window.addEventListener('click', closeDropdown);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('click', closeDropdown);
+    });
+
     return {
       search,
       gender,
@@ -94,7 +109,8 @@ export default defineComponent({
       selectOption,
       selectedOptionText,
       updateSearch,
-      updateGender
+      updateGender,
+      closeDropdown
     };
   },
   data() {
