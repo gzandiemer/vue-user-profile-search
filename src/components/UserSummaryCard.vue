@@ -49,14 +49,13 @@ export default defineComponent({
 .user-card {
   width: 90%;
   max-width: 800px;
-  margin: 2rem auto;
+  margin: var(--margin-xl) auto var(--margin-sm);
   cursor: pointer;
-  background: linear-gradient(to right, #f0f0f0, #ffffff);
+  background: var(--background-gradient);
   border: 1px solid #d0d0d0; 
   border-radius: 5px; 
-  padding: 20px; 
-  margin-bottom: 10px; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
+  padding: var(--padding-lg); 
+  box-shadow: var(--shadow-light);
   display: flex; 
   align-items: center; 
   transition: transform 0.2s, box-shadow 0.2s;
@@ -69,7 +68,7 @@ export default defineComponent({
 
 .user-picture {
   border-radius: 50%; 
-  border: 1px solid #F18A19;
+  border: 1px solid var(--primary-color);
   width: 80px; 
   height: 80px; 
   object-fit: cover; 
@@ -80,13 +79,14 @@ export default defineComponent({
   flex: 1; 
 }
 
-.user-info p {
-  color: #888;  
+.user-info h2 {
+  color: var(--secondary-color);
+  margin-bottom: var(--margin-xs);
+  font-weight: 600;  
 }
 
-.user-info h2 {
-  margin-bottom: 5px;
-  font-weight: 600;  /* Made the name bold */
+.user-info p {
+  color: var(--deemphasized-text-color); 
 }
 
 @media screen and (max-width: 768px) {

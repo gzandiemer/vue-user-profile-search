@@ -89,10 +89,6 @@ export default defineComponent({
 
 <style scoped>
 .modal {
-  --primary-color: #f18a19;
-  --secondary-color: #f0f0f0;
-  --modal-padding: 20px;
-
   position: fixed;
   z-index: 10;
   right: 4px;
@@ -100,8 +96,8 @@ export default defineComponent({
   height: 100vh;
   width: 56%;
   margin: auto;
-  background: linear-gradient(to right, #f0f0f0, #ffffff);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  background: var(--background-gradient); 
+  box-shadow: var(--shadow-light);
   overflow: hidden;
   transition: transform 0.3s ease-out;
 }
@@ -122,13 +118,12 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fefefe;
-  padding: var(--modal-padding);
+  padding: var(--padding-lg); 
   width: 100%;
 }
 
 h2 {
-  color: #424242;
+  color: var(--secondary-color);
 }
 
 .close-button {
@@ -136,14 +131,14 @@ h2 {
   right: 8%;
   z-index: 15;
   color: var(--primary-color);
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .close-button:hover,
 .close-button:focus {
-  color: black;
+  color: var(--secondary-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -151,8 +146,7 @@ h2 {
 .modal-content {
   position: absolute;
   z-index: 15;
-  background-color: #fefefe;
-  padding: var(--modal-padding);
+  padding: var(--padding-lg);
   width: 100%;
   height: calc(100vh - 7rem);
   top: 7rem;
@@ -166,7 +160,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--margin-xl);
   flex-wrap: wrap;
 }
 
@@ -176,7 +170,7 @@ h2 {
   width: 20rem;
   height: 20rem;
   object-fit: cover;
-  margin-right: 2rem;
+  margin-right: var(--margin-xl);
 }
 
 .user-name-and-id {
@@ -184,14 +178,19 @@ h2 {
 }
 
 .user-name {
+  color: var(--secondary-color);
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 600;
 }
+
+.user-id {
+  color: var(--deemphasized-text-color);
+  }
 .user-details-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2rem var(--modal-padding);
+  padding: 2rem var(--padding-lg);
   margin: 0 6rem 0 4rem;
 }
 
@@ -202,13 +201,13 @@ h2 {
     margin: 0 auto;
   }
 
-  .modal-header {
-    padding: 0.5rem; 
+  .modal-header {  
+     padding: var(--padding-sm);   
   }
 
   .close-button {
     font-size: 1.5em;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--margin-sm);
   }
 
   .modal-content {
@@ -221,23 +220,23 @@ h2 {
   .user-picture {
     width: 12rem;
     height: 12rem;
-    margin: 2rem 0 0 0;
+    margin: var(--margin-xl) auto 0 0 0;
   }
   .user-id {
     font-size: 1rem;
-    margin-left: 0.5rem;
+    margin-left: var(--margin-sm);
   }
 
   .user-name {
     font-size: 1.4rem;
-    margin-top: 2rem;
+    margin-top: var(--margin-xl);
   }
 
   .user-details-container {
     border: none;
     flex-direction: column;
     width: 60%;
-    margin: 0 3rem 0 0.5rem;
+    margin: 0 3rem 0 var(--margin-sm);;
     padding: 0.1rem;
   }
 
@@ -246,10 +245,6 @@ h2 {
 @media screen and (max-width: 600px) {
   .modal {
     font-size: 0.6rem;
-  }
-
-  .close-button {
-    font-size: 1.5em;
   }
 
   .user-picture {
@@ -268,8 +263,7 @@ h2 {
     border: none;
     flex-direction: column;
     width: 70%;
-    margin: 0 3rem 0 0.5rem;
-    padding: 0.1rem;
+    margin: 0 3rem 0 var(--margin-sm);
   }
 
 }

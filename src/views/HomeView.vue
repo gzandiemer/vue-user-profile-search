@@ -120,11 +120,6 @@ export default defineComponent({
   align-items: center;
 }
 
-/* .search-bar {
-  max-width: 600px; 
-  margin: 0 auto;
-} */
-
 .user-details-container {
   overflow: hidden;
 }

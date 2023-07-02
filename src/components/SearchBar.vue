@@ -166,7 +166,7 @@ export default defineComponent({
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.4rem;
-  color: #f18a19;
+  color: var(--primary-color);
   pointer-events: none;
 }
 
@@ -175,7 +175,7 @@ export default defineComponent({
   padding: 1.1rem;
   border: none;
   border-radius: 50px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow:var(--shadow-light);
   padding-left: 4rem;
   background-size: 3rem;
 }
@@ -190,10 +190,10 @@ export default defineComponent({
   box-sizing: border-box;
   border: none;
   border-radius: 50px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-light);
   background-color: #fff;
-  color: #000;
-  font-size: 16px;
+  color: var(--secondary-color);
+  font-size: 1rem;
   transition: 0.3s;
   cursor: pointer;
 }
@@ -216,7 +216,7 @@ export default defineComponent({
   position: absolute;
   width: 12%;
   background-color: #f8f9fa;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-light);
   border-radius: 5px;
   z-index: 10;
   border: 1px solid #ced4da;
@@ -225,32 +225,32 @@ export default defineComponent({
 .option {
   text-align: center;
   cursor: pointer;
-  padding: 12px 16px;
-  font-size: 16px;
-  color: #212529;
+  padding: 0.8rem var(--padding-md); ;
+  font-size: 1rem;
+  color: var(--secondary-color);
   background-color: #fff;
 }
 
 .option:hover {
-  background-color: #f0f0f0;
+  background-color: var(--highlight-color);
 }
 
 .search-bar__select:focus {
   outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-dark);
 }
 
 .search-bar__select:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-dark);
 }
 
 .search-bar__select:active {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-dark);
 }
 
 @media screen and (max-width: 600px) {
   .search-bar__input-container {
-    margin: 1rem auto;
+    margin: var(--margin-md) auto;
     width: 100%;
     font-size: 1rem;
   }
@@ -261,7 +261,6 @@ export default defineComponent({
     flex-wrap: wrap;
   }
   .search-bar__input {
-    padding-left: 4rem;
     margin: 0 auto;
     width: 90%;
   }
@@ -273,7 +272,7 @@ export default defineComponent({
 
   .search-bar__select {
     width: 50%;
-    margin: 0.5rem auto;
+    margin: var(--margin-sm) auto;
     justify-content: center;
   }
   .options {

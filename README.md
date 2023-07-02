@@ -32,9 +32,9 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### TO DO:  
-
-# add a set of standard margins and padding and colors
+# check style in every size
 # format. refactor and comment on the main files
+# unit tests
 # deploy
 
 

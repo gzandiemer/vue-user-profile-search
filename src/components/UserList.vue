@@ -75,13 +75,13 @@ export default defineComponent({
 .more-results-button {
   display: block;
   width: 20%;
-  padding: 1rem;
-  margin: 2rem auto;
+  padding: var(--padding-md); ;
+  margin: var(--margin-xl) auto;
   color: #fff;
-  background: linear-gradient(to right, #f18a19, #ff9800);
+  background: var(--primary-gradient);
   border: none;
   border-radius: 50px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-light);
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
