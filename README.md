@@ -31,11 +31,7 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### TO DO:  
-# check style in every size
-# format. refactor and comment on the main files
-# unit tests
-# deploy
+
 
 
 
