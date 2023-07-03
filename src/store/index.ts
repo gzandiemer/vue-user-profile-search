@@ -59,7 +59,6 @@ export default createStore({
         commit('incrementPage');
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-        // Handle the error appropriately in your app, possibly by showing an error message to the user
       }
     }
   },
