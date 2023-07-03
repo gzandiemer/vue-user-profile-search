@@ -89,7 +89,33 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -99,6 +125,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,16 +168,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-<span class="cstat-no" title="statement not covered" >  &lt;router-view/&gt;</span>
+<span class="cstat-no" title="statement not covered" >  &lt;router-view /&gt;</span>
 <span class="cstat-no" title="statement not covered" >&lt;/template&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 &lt;style&gt;<span class="fstat-no" title="function not covered" ></span>
-#app {<span class="cstat-no" title="statement not covered" ></span>
-  fo<span class="cstat-no" title="statement not covered" >nt-family: Avenir, Helvetica, Arial, sans-serif;</span>
+:root {<span class="cstat-no" title="statement not covered" ></span>
+  --<span class="cstat-no" title="statement not covered" >primary-color: #f18a19;</span>
+  --secondary-color: #424242;
+<span class="cstat-no" title="statement not covered" >  --highlight-color: #f0f</span>0f0;
+<span class="cstat-no" title="statement not covered" >  --deemphasized-text-color: #888;</span>
+  --primary-gradient: linear-gradient(to right, var(--primary-color), #ff9800);
+  --background-gradient: linear-gradient(
+    to right,
+    var(--highlight-color),
+    #fff
+  );
+&nbsp;
+  --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.15);
+  --shadow-dark: 0 4px 10px rgba(0, 0, 0, 0.3);
+&nbsp;
+  --margin-xl: 2rem; /* 32px */
+  --margin-lg: 1.25rem; /* 20px */
+  --margin-md: 1rem; /* 16px */
+  --margin-sm: 0.625rem; /* 10px */
+  --margin-xs: 0.3125rem; /* 5px */
+&nbsp;
+  --padding-lg: 1.25rem; /* 20px */
+  --padding-md: 1rem; /* 16px */
+  --padding-sm: 0.625rem; /* 10px */
+}
+&nbsp;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-<span class="cstat-no" title="statement not covered" >  -moz-osx-font-smoothing</span>: grayscale;
-<span class="cstat-no" title="statement not covered" >  text-align: center;</span>
-  color: #2c3e50;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: var(--secondary-color);
 }
 &nbsp;
 nav {
@@ -148,7 +226,7 @@ nav a.router-link-exact-active {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-01T08:48:27.109Z
+                at 2023-07-03T09:28:30.064Z
             </div>
         <script src="../prettify.js"></script>
         <script>

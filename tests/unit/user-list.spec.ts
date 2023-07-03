@@ -39,7 +39,7 @@ describe('UserList.vue', () => {
     };
 
     actions = {
-      fetchUsers: mockFetchUsers
+      FETCH_USERS: mockFetchUsers
     };
 
     mutations = {
@@ -68,20 +68,34 @@ describe('UserList.vue', () => {
   });
 
   beforeEach(() => {
-    wrapper = mount(UserList, { global: { plugins: [localStore] } });
+    wrapper = mount(UserList, {
+      global: {
+        plugins: [localStore],
+        stubs: {
+          'user-summary-card': UserSummaryCard
+        }
+      }
+    });
   });
 
   it('should render correctly', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('dispatches "fetchUsers" on component mount', () => {
-    expect(mockFetchUsers).toHaveBeenCalled();
+  it('dispatches "FETCH_USERS" action when component is mounted', () => {
+    expect(actions.FETCH_USERS).toHaveBeenCalled();
   });
 
   it('renders a UserSummaryCard for each user in state', () => {
     const UserSummaryCards = wrapper.findAllComponents(UserSummaryCard);
     expect(UserSummaryCards.length).toBe(mockUsers.length);
+  });
+
+  it('renders UserSummaryCard components for each filtered user', () => {
+    const filteredUsers = mockUsers;
+    expect(wrapper.findAllComponents(UserSummaryCard)).toHaveLength(
+      filteredUsers.length
+    );
   });
 
   it('emits "user-selected" when a UserSummaryCard emits "user-selected"', async () => {
@@ -97,33 +111,26 @@ describe('UserList.vue', () => {
     }
   });
 
-  it('calls "fetchUsers" when "More results..." button is clicked', async () => {
-    const moreButton = wrapper.find('button');
-    await moreButton.trigger('click');
-    expect(actions.fetchUsers).toHaveBeenCalled();
+  it('dispatches "FETCH_USERS" action when component is mounted', () => {
+    expect(actions.FETCH_USERS).toHaveBeenCalled();
   });
 
-  it('calls "fetchUsers" when component is mounted', () => {
-    expect(actions.fetchUsers).toHaveBeenCalled();
-  });
-
-  it('calls "fetchUsers" when window is scrolled to bottom', async () => {
-    // Simulate window.pageYOffset
-    Object.defineProperty(window, 'pageYOffset', { value: 1000 });
-    // Simulate document.documentElement.scrollTop
-    document.documentElement.scrollTop = 1000;
-    // Simulate document.body.scrollTop
-    document.body.scrollTop = 1000;
-    // Simulate document.documentElement.offsetHeight
+  it('calls "FETCH_USERS" action when scrolled to the bottom of the page', async () => {
+    // Mock the scroll event
+    const scrollEvent = new Event('scroll');
+    Object.defineProperty(window, 'innerHeight', { value: 800 });
     Object.defineProperty(document.documentElement, 'offsetHeight', {
       value: 1000
     });
-    // Simulate window.innerHeight
-    window.innerHeight = 1000;
+    Object.defineProperty(document.documentElement, 'scrollTop', {
+      value: 200
+    });
 
-    window.dispatchEvent(new Event('scroll'));
+    // Trigger the scroll event
+    window.dispatchEvent(scrollEvent);
 
     await wrapper.vm.$nextTick();
-    expect(actions.fetchUsers).toHaveBeenCalled();
+
+    expect(actions.FETCH_USERS).toHaveBeenCalled();
   });
 });

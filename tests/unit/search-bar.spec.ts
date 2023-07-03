@@ -86,14 +86,14 @@ describe('SearchBar.vue', () => {
     expect(mutations.setSearchQuery).toHaveBeenCalled();
     expect(wrapper.emitted('update-search')).toBeTruthy();
     expect(wrapper.emitted('update-search')?.[0]).toEqual(['test search']);
-  }); 
+  });
 
   it('emits "update-gender" event and updates store on select', async () => {
     const dropdown = wrapper.find('.search-bar__select');
     // Open the dropdown
     await dropdown.trigger('click');
     // Wait for the dropdown to open
-    await wrapper.vm.$nextTick(); 
+    await wrapper.vm.$nextTick();
 
     const option = wrapper
       .findAll('.option')

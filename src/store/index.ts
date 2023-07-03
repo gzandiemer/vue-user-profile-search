@@ -45,17 +45,25 @@ export default createStore({
     },
     incrementPage(state: State){
       state.page +=1;
-      //localStorage.setItem('page', JSON.stringify(state.page));
     }
   },
   actions: {
-      async fetchUsers({ commit, state }) {
+    async FETCH_USERS({ commit, state }) {
+      try {
         const response = await fetch(`https://randomuser.me/api/?inc=gender,name,location,email,login,phone,picture&page=${state.page}&results=25`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         commit('setUsers', [...state.users, ...data.results]);
         commit('incrementPage');
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        // Handle the error appropriately in your app, possibly by showing an error message to the user
       }
+    }
   },
+  
   getters: {
     getUser: (state: State) => (id: string) => {
       return state.users.find((user) => user.login.uuid === id);

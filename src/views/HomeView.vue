@@ -1,8 +1,14 @@
 <template>
   <div class="app-container">
+    <div v-if="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
     <div class="user-list" :style="userListStyle">
-      <!-- <div class="user-list"> -->
-      <search-bar class="search-bar" @update-search="updateSearch" @update-gender="updateGender" />
+      <search-bar
+        class="search-bar"
+        @update-search="updateSearch"
+        @update-gender="updateGender"
+      />
       <user-list
         @user-selected="showUserDetails"
         :search="searchQuery"
@@ -33,7 +39,7 @@ export default defineComponent({
   name: 'HomeView',
   components: {
     SearchBar,
-    'user-detail-modal': UserDetailModal,
+    UserDetailModal,
     UserList
   },
   setup() {
@@ -42,6 +48,7 @@ export default defineComponent({
       () => store.state.selectedUser as User | null
     );
 
+    // Search query and gender are taken from the Vuex store and can be set by committing mutations
     const searchQuery = computed({
       get: () => store.state.searchQuery || '',
       set: (value) => store.commit('setSearchQuery', value)
@@ -58,15 +65,23 @@ export default defineComponent({
       windowWidth.value = window.innerWidth;
     };
 
-    onMounted(() => {
+    const errorMessage = ref('');
+
+    onMounted(async () => {
       window.addEventListener('resize', updateWindowWidth);
-      store.dispatch('fetchUsers');
+      try {
+        await store.dispatch('FETCH_USERS');
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+        errorMessage.value = 'Failed to fetch users. Please try again later.';
+      }
     });
 
     onUnmounted(() => {
       window.removeEventListener('resize', updateWindowWidth);
     });
 
+    // The width of the user list depends on the window width and whether a user is selected
     const userListStyle = computed(() => {
       if (windowWidth.value >= 1280 && selectedUser.value) {
         return { width: '40%' };
@@ -83,10 +98,12 @@ export default defineComponent({
       store.commit('setGender', value);
     };
 
+    // When a user is selected, it's set in the Vuex store
     const showUserDetails = (user: User) => {
       store.commit('setSelectedUser', user);
     };
 
+    // Clear the selected user in the Vuex store when the modal is closed
     const closeModal = () => {
       store.commit('clearSelectedUser');
     };
@@ -96,6 +113,7 @@ export default defineComponent({
       searchQuery,
       gender,
       userListStyle,
+      errorMessage,
       updateSearch,
       updateGender,
       showUserDetails,
@@ -111,7 +129,6 @@ export default defineComponent({
   height: 100vh;
   width: 100%;
 }
-
 .user-list {
   overflow-y: auto;
   height: 100vh;
@@ -119,8 +136,12 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
 }
-
 .user-details-container {
   overflow: hidden;
+}
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
 }
 </style>

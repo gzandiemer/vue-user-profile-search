@@ -6,7 +6,9 @@
       :user="user"
       @user-selected="$emit('user-selected', $event)"
     />
-    <button class="more-results-button" @click="fetchUsers">More results...</button>
+    <div v-if="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -24,13 +26,12 @@ export default defineComponent({
   setup(_, { emit }) {
     const store = useStore();
 
-    const fetchUsers = async () => {
-      await store.dispatch('fetchUsers');
-    };
+    const errorMessage = ref('');
 
     const filteredUsers = computed(() => store.getters.filteredUsers);
 
-    const onScroll = ref(() => {
+    // Check if the user has scrolled to the bottom of the page
+    const onScroll = ref(async () => {
       const bottomOfWindow =
         Math.max(
           window.pageYOffset,
@@ -41,15 +42,25 @@ export default defineComponent({
         document.documentElement.offsetHeight;
 
       if (bottomOfWindow) {
-        store.dispatch('fetchUsers');
+        try {
+          await store.dispatch('FETCH_USERS');
+        } catch (error) {
+          console.error('Failed to fetch users:', error);
+          errorMessage.value = 'Failed to fetch users. Please try again later.';
+        }
       }
     });
 
-    onMounted(() => {
+    onMounted(async () => {
       // Add scroll event listener on component mount
       window.addEventListener('scroll', onScroll.value);
       // Fetch initial users on component mount
-      store.dispatch('fetchUsers');
+      try {
+        await store.dispatch('FETCH_USERS');
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+        errorMessage.value = 'Failed to fetch users. Please try again later.';
+      }
     });
 
     onUnmounted(() => {
@@ -57,11 +68,12 @@ export default defineComponent({
       window.removeEventListener('scroll', onScroll.value);
     });
 
+    // Emit the 'user-selected' event with the selected user as payload
     const userSelected = (user: User) => {
       emit('user-selected', user);
     };
 
-    return { fetchUsers, filteredUsers, userSelected };
+    return { errorMessage, filteredUsers, userSelected };
   }
 });
 </script>
@@ -70,22 +82,6 @@ export default defineComponent({
 .user-list {
   width: 100%;
   height: 100vh;
-}
-
-.more-results-button {
-  display: block;
-  width: 20%;
-  padding: var(--padding-md); ;
-  margin: var(--margin-xl) auto;
-  color: #fff;
-  background: var(--primary-gradient);
-  border: none;
-  border-radius: 50px;
-  box-shadow: var(--shadow-light);
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -98,9 +94,6 @@ export default defineComponent({
   100% {
     transform: scale(1);
   }
-}
-.more-results-button:hover {
-  background: linear-gradient(to right, #d16a00, #ff7800);
 }
 
 @media screen and (max-width: 600px) {

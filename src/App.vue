@@ -1,15 +1,19 @@
 <template>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
 :root {
-  --primary-color: #f18a19; 
+  --primary-color: #f18a19;
   --secondary-color: #424242;
-  --highlight-color: #f0f0f0; 
+  --highlight-color: #f0f0f0;
   --deemphasized-text-color: #888;
   --primary-gradient: linear-gradient(to right, var(--primary-color), #ff9800);
-  --background-gradient: linear-gradient(to right, var(--highlight-color), #fff);
+  --background-gradient: linear-gradient(
+    to right,
+    var(--highlight-color),
+    #fff
+  );
 
   --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.15);
   --shadow-dark: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -23,7 +27,6 @@
   --padding-lg: 1.25rem; /* 20px */
   --padding-md: 1rem; /* 16px */
   --padding-sm: 0.625rem; /* 10px */
-   
 }
 
 #app {
@@ -31,7 +34,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--secondary-color);
 }
 
 nav {

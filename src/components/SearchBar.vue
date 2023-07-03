@@ -12,24 +12,24 @@
         @input="updateSearch"
       />
     </div>
-      <div class="search-bar__select" @click="open = !open">
-        <div class="selected-option">
-          {{ selectedOptionText }}
-          <span class="arrow-down" v-show="!open">&#9662;</span>
-          <span class="arrow-up" v-show="open">&#9652;</span>
-        </div>
-        <div class="options" v-show="open">
-          <div
-            class="option"
-            v-for="option in options"
-            :key="option.value"
-            @click.stop="selectOption(option.value)"
-          >
-            {{ option.text }}
-          </div>
+    <div class="search-bar__select" @click="open = !open">
+      <div class="selected-option">
+        {{ selectedOptionText }}
+        <span class="arrow-down" v-show="!open">&#9662;</span>
+        <span class="arrow-up" v-show="open">&#9652;</span>
+      </div>
+      <div class="options" v-show="open">
+        <div
+          class="option"
+          v-for="option in options"
+          :key="option.value"
+          @click.stop="selectOption(option.value)"
+        >
+          {{ option.text }}
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -71,11 +71,8 @@ export default defineComponent({
       emit('update-gender', gender.value);
     };
 
+    // Handle option selection in the dropdown
     const selectOption = (value: string) => {
-      const optionText = options.value.find(
-        (option) => option.value === value
-      )?.text;
-      console.log(`Option ${value} selected. Option text: ${optionText}`);
       store.commit('setGender', value);
       emit('update-gender', value);
       open.value = false;
@@ -86,6 +83,7 @@ export default defineComponent({
       return option ? option.text : '';
     });
 
+    // Handle click outside dropdown to close it
     const closeDropdown = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (!target.closest('.search-bar__select')) {
@@ -115,27 +113,8 @@ export default defineComponent({
   },
   data() {
     return {
-      isSmallScreen: window.innerWidth <= 600 // You can adjust the value as needed
+      isSmallScreen: window.innerWidth <= 600
     };
-  },
-  computed: {
-    maleOptionText() {
-      return this.isSmallScreen ? 'M' : 'Male';
-    },
-    femaleOptionText() {
-      return this.isSmallScreen ? 'F' : 'Female';
-    }
-  },
-  created() {
-    window.addEventListener('resize', this.updateScreenWidth);
-  },
-  unmounted() {
-    window.removeEventListener('resize', this.updateScreenWidth);
-  },
-  methods: {
-    updateScreenWidth() {
-      this.isSmallScreen = window.innerWidth <= 600;
-    }
   }
 });
 </script>
@@ -151,7 +130,6 @@ export default defineComponent({
   margin-top: 8%;
   margin-left: 5%;
 }
-
 .search-bar {
   display: flex;
   justify-content: space-between;
@@ -169,13 +147,12 @@ export default defineComponent({
   color: var(--primary-color);
   pointer-events: none;
 }
-
 .search-bar__input {
   width: 100%;
   padding: 1.1rem;
   border: none;
   border-radius: 50px;
-  box-shadow:var(--shadow-light);
+  box-shadow: var(--shadow-light);
   padding-left: 4rem;
   background-size: 3rem;
 }
@@ -197,7 +174,6 @@ export default defineComponent({
   transition: 0.3s;
   cursor: pointer;
 }
-
 .selected-option {
   text-align: center;
   padding-right: 1.5rem; /* space for the arrow */
@@ -211,7 +187,6 @@ export default defineComponent({
   top: 50%;
   transform: translateY(-50%);
 }
-
 .options {
   position: absolute;
   width: 12%;
@@ -221,29 +196,24 @@ export default defineComponent({
   z-index: 10;
   border: 1px solid #ced4da;
 }
-
 .option {
   text-align: center;
   cursor: pointer;
-  padding: 0.8rem var(--padding-md); ;
+  padding: 0.8rem var(--padding-md);
   font-size: 1rem;
   color: var(--secondary-color);
   background-color: #fff;
 }
-
 .option:hover {
   background-color: var(--highlight-color);
 }
-
 .search-bar__select:focus {
   outline: none;
   box-shadow: var(--shadow-dark);
 }
-
 .search-bar__select:hover {
   box-shadow: var(--shadow-dark);
 }
-
 .search-bar__select:active {
   box-shadow: var(--shadow-dark);
 }
@@ -263,13 +233,12 @@ export default defineComponent({
   .search-bar__input {
     margin: 0 auto;
     width: 90%;
+    padding-left: 5rem;
   }
-
   .search-icon {
     font-size: 1rem;
     left: 11%;
   }
-
   .search-bar__select {
     width: 50%;
     margin: var(--margin-sm) auto;
